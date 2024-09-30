@@ -1,6 +1,7 @@
-import { createStitches } from '@stitches/react';
+/* eslint-disable prettier/prettier */
+import { createStitches } from '@stitches/react'
 
-export const { styled, getCssText } = createStitches({
+export const { styled, getCssText, globalCss } = createStitches({
   theme: {
     fonts: {
       default: 'Nunito, sans-serif',
@@ -18,12 +19,12 @@ export const { styled, getCssText } = createStitches({
       10: '2.5rem',
     },
     fontSizes: {
-      xs: '0.75rem',
-      sm: '0.875rem',
-      md: '1rem',
-      lg: '1.125rem',
-      xl: '1.25rem',
-      '2xl': '1.5rem',
+      xs: '1.2rem',
+      sm: '1.4rem',
+      md: '1.6rem',
+      lg: '1.8rem',
+      xl: '2rem',
+      '2xl': '2.4rem',
     },
     fontWeights: {
       regular: '400',
@@ -63,4 +64,4 @@ export const { styled, getCssText } = createStitches({
       full: '99999px',
     },
   },
-});
+})

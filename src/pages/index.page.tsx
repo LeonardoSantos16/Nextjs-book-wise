@@ -1,4 +1,23 @@
-import { HelloColor } from "./styles"
-export default function Home(){
-  return <HelloColor>Hello world</HelloColor>
+import { HelloColor } from './styles'
+import { Tag } from '@/components/Tag'
+import { Sidebar } from '@/components/Sidebar'
+import { CardPopularBooks } from '@/components/CardPopularBooks'
+import { CardBeginVisitor } from '@/components/CardBeginVisitor'
+import { CardProfile } from '@/components/CardProfile'
+import { Input } from '@/components/Input'
+import { PageTitle } from '@/components/PageTitle'
+import { BookCard } from './explorer/BookCard'
+import { CommentBox } from './explorer/CommentBox'
+import { ReviewBook } from './explorer/ReviewBook'
+import { ModalLogin } from './explorer/ModalLogin'
+import { ButtonLogin } from '@/components/ButtonLogin/Index'
+import { Login } from './login/login.page'
+import { Home } from './home/home.page'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { Profile } from './profile/profile.page'
+import { Explorer } from './explorer/explorer.page'
+import { CommentModal } from './explorer/CommentModal'
+export default function Vasco() {
+  return <Explorer />
 }
