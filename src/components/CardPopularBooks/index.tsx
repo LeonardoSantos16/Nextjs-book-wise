@@ -1,10 +1,5 @@
-import {
-  ContainerBooks,
-  ImageBooks,
-  BookDetails,
-  TitleBook,
-  Rating,
-} from './styles'
+import { ContainerBooks, ImageBooks, BookDetails, TitleBook } from './styles'
+import { Rating } from '../Rating'
 export function CardPopularBooks() {
   // TODO: receber pelas props a width do card, height e width da imagem
   return (
@@ -15,7 +10,7 @@ export function CardPopularBooks() {
           <h3>A revolução dos bichos</h3>
           <span>George Orwell</span>
         </TitleBook>
-        <Rating>aaaa</Rating>
+        <Rating stars={3.5} size={16} />
       </BookDetails>
     </ContainerBooks>
   )

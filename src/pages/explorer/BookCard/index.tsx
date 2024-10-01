@@ -4,7 +4,6 @@ import {
   ImageBooks,
   BookDetails,
   TitleBook,
-  Rating,
   InfoAnalytics,
   AnalyticsContainer,
   IconStyled,
@@ -12,6 +11,7 @@ import {
   Review,
 } from './styles'
 import { BookmarkSimple, BookOpen } from 'phosphor-react'
+import { Rating } from '@/components/Rating'
 export function BookCard() {
   // TODO: receber pelas props a width do card, height e width da imagem
   return (
@@ -29,7 +29,7 @@ export function BookCard() {
             <span>Zeno Rocha</span>
           </TitleBook>
           <Review>
-            <Rating>aaaa</Rating>
+            <Rating stars={6} size={20} />
             <span>3 avaliações</span>
           </Review>
         </BookDetails>

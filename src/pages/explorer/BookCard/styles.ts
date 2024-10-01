@@ -58,9 +58,6 @@ export const Review = styled('div', {
     color: '$gray400',
   },
 })
-export const Rating = styled('div', {
-  color: 'Pink',
-})
 
 export const AnalyticsContainer = styled('div', {
   display: 'flex',

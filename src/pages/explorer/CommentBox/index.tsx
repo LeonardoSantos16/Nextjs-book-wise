@@ -11,6 +11,7 @@ import {
   ButtonAcept,
 } from './styles'
 import { X, Check } from 'phosphor-react'
+import { Rating } from '@/components/Rating'
 export function CommentBox() {
   return (
     <ContainerComment>
@@ -22,7 +23,7 @@ export function CommentBox() {
           height={40}
         />
         <Username>Cristofer Rosser</Username>
-        <Image src="/images/Rating.svg" alt="rating" width={152} height={28} />
+        <Rating stars={1} size={28} />
       </ProfileComment>
       <TextArea
         name="comment"

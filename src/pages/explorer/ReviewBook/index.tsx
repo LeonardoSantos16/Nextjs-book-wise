@@ -1,9 +1,9 @@
+import { Rating } from '@/components/Rating'
 import {
   ContainerCard,
   CardHeader,
   ImageAvatar,
   Profile,
-  Rating,
   BookDescrible,
 } from './styles'
 // TODO: fazer a lógica da estrela
@@ -21,7 +21,7 @@ export function ReviewBook() {
           <h1>Jaxson Dias</h1>
           <span>Hoje</span>
         </Profile>
-        <Rating>estrla</Rating>
+        <Rating size={16} stars={4.5} />
       </CardHeader>
       <BookDescrible>
         Nec tempor nunc in egestas. Euismod nisi eleifend at et in sagittis.

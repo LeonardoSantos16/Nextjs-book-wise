@@ -19,5 +19,5 @@ import { Profile } from './profile/profile.page'
 import { Explorer } from './explorer/explorer.page'
 import { CommentModal } from './explorer/CommentModal'
 export default function Vasco() {
-  return <Explorer />
+  return <Home />
 }

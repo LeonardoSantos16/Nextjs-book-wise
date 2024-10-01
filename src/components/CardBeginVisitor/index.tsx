@@ -1,9 +1,9 @@
+import { Rating } from '../Rating'
 import {
   ContainerCard,
   CardHeader,
   ImageAvatar,
   Profile,
-  Rating,
   CommentCard,
   CommentBook,
   BookTitle,
@@ -31,7 +31,7 @@ export function CardBeginVisitor({ flag }: propsCard) {
             <h1>Jaxson Dias</h1>
             <span>Hoje</span>
           </Profile>
-          <Rating>estrla</Rating>
+          <Rating size={16} stars={0} />
         </CardHeader>
         <CommentCard>
           <Image
@@ -72,7 +72,7 @@ export function CardBeginVisitor({ flag }: propsCard) {
               <Profile>
                 <span>Hoje</span>
               </Profile>
-              <Rating>estrla</Rating>
+              <Rating size={16} stars={2} />
             </InfoBook>
             <BookTitle>
               <h1>O Hobbit</h1>

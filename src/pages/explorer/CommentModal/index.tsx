@@ -9,7 +9,7 @@ import {
 import { CommentBox } from '../CommentBox'
 import { X } from 'phosphor-react'
 import { ReviewBook } from '../ReviewBook'
-export function CommentModal({ onClose }) {
+export function CommentModal({ onClose }: any) {
   return (
     <ContainerModal>
       <IconStyled onClick={onClose}>
