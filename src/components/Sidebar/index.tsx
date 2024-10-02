@@ -9,7 +9,7 @@ import {
   SignInIcon,
   UserContent,
 } from './styles'
-import { PicutureUser } from '@/PictureUser'
+import { PicutureUser } from '@/components/PictureUser'
 
 export function Sidebar() {
   const isLogged = false

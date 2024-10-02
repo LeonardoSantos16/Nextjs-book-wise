@@ -1,26 +1,32 @@
 import { globalStyles } from '@/styles/global'
 import type { AppProps } from 'next/app'
 import { MainLayout } from '@/layouts/MainLayout'
-globalStyles()
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <MainLayout>
-      <Component {...pageProps} />
-    </MainLayout>
-  )
-}
+import { SessionProvider } from 'next-auth/react'
 
 /*
-import { globalStyles } from '@/styles/global'
-import type { AppProps } from 'next/app'
-import { MainLayout } from '@/layouts/MainLayout'
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  )
+}
+   */
+
 import { useRouter } from 'next/router'
 globalStyles()
-export default function App({ Component, pageProps }: AppProps) {
+globalStyles()
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   const router = useRouter()
-  const isLoginPage = router.pathname === '/'
+  const isLoginPage = router.pathname === '/login' || router.pathname === '/'
   return (
-    <>
+    <SessionProvider session={session}>
       {!isLoginPage ? (
         <MainLayout>
           <Component {...pageProps} />
@@ -28,6 +34,6 @@ export default function App({ Component, pageProps }: AppProps) {
       ) : (
         <Component {...pageProps} />
       )}
-    </>
+    </SessionProvider>
   )
-    */
+}

@@ -4,5 +4,4 @@ const nextConfig = {
   swcMinify: true,
   pageExtensions: ['page.tsx', 'api.ts', 'api.tsx'],
 }
-
 export default nextConfig

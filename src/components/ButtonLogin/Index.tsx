@@ -6,9 +6,9 @@ interface propsLogin {
   alt: string
   text: string
 }
-export function ButtonLogin({ image, alt, text }: propsLogin) {
+export function ButtonLogin({ image, alt, text, ...rest }: propsLogin) {
   return (
-    <ContainerButtonLogin>
+    <ContainerButtonLogin {...rest}>
       <Image src={image} alt={alt} width={32} height={32} />
       <p>{text}</p>
     </ContainerButtonLogin>

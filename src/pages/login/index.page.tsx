@@ -6,8 +6,21 @@ import {
   OptionsLogin,
 } from './styles'
 import Image from 'next/image'
-
-export function Login() {
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+export default function Login() {
+  const session = useSession()
+  const router = useRouter()
+  console.log(session.status)
+  async function handleConnectGoogle() {
+    await signIn('google')
+  }
+  useEffect(() => {
+    if (session.status === 'authenticated') {
+      router.push('/profile')
+    }
+  }, [session.status])
   return (
     <ContainerLogin>
       <Image
@@ -31,11 +44,12 @@ export function Login() {
             image="/images/google-icon.svg"
             alt="icon google"
             text="Entrar com Google"
+            onClick={handleConnectGoogle}
           />
           <ButtonLogin
             image="/images/RocketLaunch.svg"
             alt="Rocket"
-            text="Acessar como visitante"
+            text="Entrar como visitante"
           />
         </OptionsLogin>
       </LoginContent>

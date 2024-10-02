@@ -10,7 +10,7 @@ import {
   SectionHome,
   SectionContent,
 } from './styles'
-export function Home() {
+export default function Home() {
   const isLogged = true
 
   return (

@@ -9,7 +9,7 @@ import {
   SearchBooks,
   BooksListProfile,
 } from './styles'
-export function Profile() {
+export default function Profile() {
   return (
     <ContainerProfile>
       <PageTitle text="Perfil" icon={<User size={32} />} />

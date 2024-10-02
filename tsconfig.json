@@ -21,13 +21,14 @@
         "./src/*"
       ]
     },
-    "target": "es5",
+    "target": "esnext",
     "forceConsistentCasingInFileNames": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "./prisma/seeds/**/*.ts"
   ],
   "exclude": [
     "node_modules"

@@ -11,7 +11,7 @@ import { Tag } from '@/components/Tag'
 import { CardPopularBooks } from '@/components/CardPopularBooks'
 import { CommentModal } from './CommentModal'
 import { useState } from 'react'
-export function Explorer() {
+export default function Explorer() {
   const tags = ['Tudo', 'Tudo', 'ada', 'Tudaaao']
   const [isModalOpen, setIsModalOpen] = useState(false)
 
