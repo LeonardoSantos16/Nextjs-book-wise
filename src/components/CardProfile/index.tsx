@@ -16,7 +16,7 @@ export function CardProfile() {
       <ContainerCard>
         <CommentCard>
           <Image
-            src="/images/o-hobbit.png"
+            src="/images/books/o-hobbit.png"
             alt="capa do livro"
             width={108}
             height={152}

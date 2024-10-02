@@ -2,13 +2,30 @@ import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
 import { PrismaAdapter } from '@/lib/auth/prisma-adapter'
 import { NextApiRequest, NextApiResponse } from 'next'
+import GitHubProvider, { GithubProfile } from 'next-auth/providers/github'
 export function buildNextAuthOptions(
   req: NextApiRequest,
   res: NextApiResponse,
 ): NextAuthOptions {
   return {
-    adapter: PrismaAdapter(),
+    adapter: PrismaAdapter(req, res),
     providers: [
+      GitHubProvider({
+        clientId: process.env.GITHUB_ID ?? '',
+        clientSecret: process.env.GITHUB_SECRET ?? '',
+        authorization: {
+          params: {
+            scope: 'read:user user:email',
+          },
+        },
+        profile(profile: GithubProfile) {
+          return {
+            id: profile.id.toString(),
+            name: profile.name ?? profile.login,
+            avatar_url: profile.avatar_url,
+          }
+        },
+      }),
       GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID ?? '',
         clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',

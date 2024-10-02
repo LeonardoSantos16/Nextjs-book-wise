@@ -12,7 +12,7 @@ export const ContainerSidebar = styled('div', {
   height: '98rem',
   background: '#0E1116',
   borderRadius: '1.2rem',
-  backgroundImage: 'url(/images/backgroundAside.png)',
+  backgroundImage: 'url(/images/books/backgroundAside.png)',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   margin: '2rem 0 0 2rem',

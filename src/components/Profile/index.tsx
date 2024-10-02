@@ -8,6 +8,7 @@ import {
   InfoAnalytics,
   IconStyled,
 } from './styles'
+import { useSession } from 'next-auth/react'
 import { BookOpen, Books, UserList, BookmarkSimple } from 'phosphor-react'
 
 export function ProfileContent() {

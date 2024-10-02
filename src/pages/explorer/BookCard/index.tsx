@@ -18,7 +18,7 @@ export function BookCard() {
     <ContainerBooks>
       <ContentBooks>
         <ImageBooks
-          src="/images/book.png"
+          src="/images/books/book.png"
           alt="book"
           width={171}
           height={242}

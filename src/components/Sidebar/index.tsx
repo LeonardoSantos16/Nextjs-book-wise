@@ -16,7 +16,12 @@ export function Sidebar() {
   return (
     <ContainerSidebar>
       <MenuHeader>
-        <Image src="/images/Logo.svg" alt="Logo" width={128} height={32} />
+        <Image
+          src="/images/books/Logo.svg"
+          alt="Logo"
+          width={128}
+          height={32}
+        />
         <Menu>
           <SidebarItem href="/home">
             <ChartLineUp size={18} />

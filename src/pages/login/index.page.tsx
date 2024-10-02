@@ -16,6 +16,9 @@ export default function Login() {
   async function handleConnectGoogle() {
     await signIn('google')
   }
+  async function handleConnectGithub() {
+    await signIn('github')
+  }
   useEffect(() => {
     if (session.status === 'authenticated') {
       router.push('/profile')
@@ -24,7 +27,7 @@ export default function Login() {
   return (
     <ContainerLogin>
       <Image
-        src="/images/Imagelogin.svg"
+        src="/images/books/Imagelogin.svg"
         alt="BookWise"
         width={598}
         height={912}
@@ -39,6 +42,7 @@ export default function Login() {
             image="/images/icons_github.svg"
             alt="icon github"
             text="Entrar com github"
+            onClick={handleConnectGithub}
           />
           <ButtonLogin
             image="/images/google-icon.svg"

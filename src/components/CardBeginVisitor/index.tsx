@@ -22,7 +22,7 @@ export function CardBeginVisitor({ flag }: propsCard) {
       <ContainerCard>
         <CardHeader>
           <ImageAvatar
-            src="/images/Avatar.svg"
+            src="/images/books/Avatar.svg"
             alt="avatar"
             width={40}
             height={40}
@@ -35,7 +35,7 @@ export function CardBeginVisitor({ flag }: propsCard) {
         </CardHeader>
         <CommentCard>
           <Image
-            src="/images/o-hobbit.png"
+            src="/images/books/o-hobbit.png"
             alt="capa do livro"
             width={108}
             height={152}
@@ -62,7 +62,7 @@ export function CardBeginVisitor({ flag }: propsCard) {
       <ContainerCardVariant>
         <CommentCard>
           <Image
-            src="/images/o-hobbit.png"
+            src="/images/books/o-hobbit.png"
             alt="capa do livro"
             width={108}
             height={152}

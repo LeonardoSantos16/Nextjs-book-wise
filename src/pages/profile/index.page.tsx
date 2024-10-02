@@ -9,7 +9,10 @@ import {
   SearchBooks,
   BooksListProfile,
 } from './styles'
+import { useSession } from 'next-auth/react'
 export default function Profile() {
+  const session = useSession()
+  console.log(session)
   return (
     <ContainerProfile>
       <PageTitle text="Perfil" icon={<User size={32} />} />

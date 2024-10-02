@@ -17,7 +17,7 @@ export function CommentBox() {
     <ContainerComment>
       <ProfileComment>
         <ImageAvatar
-          src="/images/Avatar.svg"
+          src="/images/books/Avatar.svg"
           alt="avatar"
           width={40}
           height={40}

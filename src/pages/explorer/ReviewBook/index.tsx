@@ -12,7 +12,7 @@ export function ReviewBook() {
     <ContainerCard>
       <CardHeader>
         <ImageAvatar
-          src="/images/Avatar.svg"
+          src="/images/books/Avatar.svg"
           alt="avatar"
           width={40}
           height={40}

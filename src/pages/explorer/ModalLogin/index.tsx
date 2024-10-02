@@ -11,7 +11,7 @@ export function ModalLogin() {
       <OptionsLogin>
         <ButtonLogin>
           <Image
-            src="/images/google-icon.svg"
+            src="/images/books/google-icon.svg"
             alt="icon google"
             width={32}
             height={32}
@@ -20,7 +20,7 @@ export function ModalLogin() {
         </ButtonLogin>
         <ButtonLogin>
           <Image
-            src="/images/icons_github.svg"
+            src="/images/books/icons_github.svg"
             alt="icon github"
             width={32}
             height={32}
