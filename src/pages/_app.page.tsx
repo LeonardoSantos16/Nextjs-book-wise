@@ -2,7 +2,11 @@ import { globalStyles } from '@/styles/global'
 import type { AppProps } from 'next/app'
 import { MainLayout } from '@/layouts/MainLayout'
 import { SessionProvider } from 'next-auth/react'
-
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryClientProviderProps,
+} from '@tanstack/react-query'
 /*
 export default function App({
   Component,
@@ -17,6 +21,7 @@ export default function App({
    */
 
 import { useRouter } from 'next/router'
+import { queryClient } from '@/lib/react-query'
 globalStyles()
 globalStyles()
 export default function App({
@@ -26,14 +31,16 @@ export default function App({
   const router = useRouter()
   const isLoginPage = router.pathname === '/login' || router.pathname === '/'
   return (
-    <SessionProvider session={session}>
-      {!isLoginPage ? (
-        <MainLayout>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider session={session}>
+        {!isLoginPage ? (
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        ) : (
           <Component {...pageProps} />
-        </MainLayout>
-      ) : (
-        <Component {...pageProps} />
-      )}
-    </SessionProvider>
+        )}
+      </SessionProvider>
+    </QueryClientProvider>
   )
 }

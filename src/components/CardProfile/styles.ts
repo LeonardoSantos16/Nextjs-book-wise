@@ -28,11 +28,6 @@ export const ContainerCard = styled('div', {
   },
 })
 
-export const Rating = styled('div', {
-  width: '9.6rem',
-  height: '1.6rem',
-})
-
 export const CommentCard = styled('div', {
   display: 'flex',
   gap: '2rem',

@@ -9,6 +9,9 @@ import Image from 'next/image'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { GetServerSideProps } from 'next'
+import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
+import { unstable_getServerSession } from 'next-auth'
 export default function Login() {
   const session = useSession()
   const router = useRouter()
@@ -21,9 +24,13 @@ export default function Login() {
   }
   useEffect(() => {
     if (session.status === 'authenticated') {
-      router.push('/profile')
+      router.push(`/home/${session.data?.user.id}`)
     }
   }, [session.status])
+
+  async function handleConnectVisitor() {
+    router.push('/home')
+  }
   return (
     <ContainerLogin>
       <Image
@@ -54,9 +61,27 @@ export default function Login() {
             image="/images/RocketLaunch.svg"
             alt="Rocket"
             text="Entrar como visitante"
+            onClick={handleConnectVisitor}
           />
         </OptionsLogin>
       </LoginContent>
     </ContainerLogin>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  res,
+  params,
+}) => {
+  const session = await unstable_getServerSession(
+    req,
+    res,
+    buildNextAuthOptions(req, res),
+  )
+  return {
+    props: {
+      session,
+    },
+  }
 }

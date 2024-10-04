@@ -76,6 +76,7 @@ export const CommentBook = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '2rem',
+  width: '100%',
 })
 
 export const BookTitle = styled('div', {

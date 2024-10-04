@@ -5,7 +5,6 @@ export const ContainerHome = styled('div', {
   flexDirection: 'column',
   gap: '4rem',
   alignItems: 'flex-start',
-  paddingTop: '7.2rem',
   width: '100%',
   maxWidth: '100rem',
   margin: '0 auto',
@@ -30,8 +29,8 @@ export const SectionContent = styled('section', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
-  height: '80rem',
   overflow: 'auto',
+  height: '55rem',
 
   '&::-webkit-scrollbar': {
     background: 'none',

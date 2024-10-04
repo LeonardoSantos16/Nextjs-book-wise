@@ -15,42 +15,44 @@ import Image from 'next/image'
 // TODO: fazer a lógica da estrela
 interface propsCard {
   flag: boolean
+  title: string
+  star: number
+  author: string
+  description: string
+  username: string
+  imagebook: string
+  avataruser: string
 }
-export function CardBeginVisitor({ flag }: propsCard) {
+export function CardBeginVisitor({
+  flag,
+  title,
+  star,
+  author,
+  description,
+  username,
+  imagebook,
+  avataruser,
+}: propsCard) {
+  const imageUrl = imagebook.replace('public', '')
   function CardDefault() {
     return (
       <ContainerCard>
         <CardHeader>
-          <ImageAvatar
-            src="/images/books/Avatar.svg"
-            alt="avatar"
-            width={40}
-            height={40}
-          />
+          <ImageAvatar src={avataruser} alt="avatar" width={40} height={40} />
           <Profile>
-            <h1>Jaxson Dias</h1>
+            <h1>{username}</h1>
             <span>Hoje</span>
           </Profile>
-          <Rating size={16} stars={0} />
+          <Rating size={16} stars={star} />
         </CardHeader>
         <CommentCard>
-          <Image
-            src="/images/books/o-hobbit.png"
-            alt="capa do livro"
-            width={108}
-            height={152}
-          />
+          <Image src={imageUrl} alt="capa do livro" width={108} height={152} />
           <CommentBook>
             <BookTitle>
-              <h1>O Hobbit</h1>
-              <h2>J.R.R. Tolkien</h2>
+              <h1>{title}</h1>
+              <h2>{author}</h2>
             </BookTitle>
-            <BookDescrible>
-              Semper et sapien proin vitae nisi. Feugiat neque integer donec et
-              aenean posuere amet ultrices. Cras fermentum id pulvinar varius
-              leo a in. Amet libero pharetra nunc elementum fringilla velit
-              ipsum. Sed vulputate massa velit nibh
-            </BookDescrible>
+            <BookDescrible>{description}</BookDescrible>
           </CommentBook>
         </CommentCard>
       </ContainerCard>
@@ -61,12 +63,7 @@ export function CardBeginVisitor({ flag }: propsCard) {
     return (
       <ContainerCardVariant>
         <CommentCard>
-          <Image
-            src="/images/books/o-hobbit.png"
-            alt="capa do livro"
-            width={108}
-            height={152}
-          />
+          <Image src={imageUrl} alt="capa do livro" width={108} height={152} />
           <CommentBook>
             <InfoBook>
               <Profile>
@@ -75,14 +72,10 @@ export function CardBeginVisitor({ flag }: propsCard) {
               <Rating size={16} stars={2} />
             </InfoBook>
             <BookTitle>
-              <h1>O Hobbit</h1>
-              <h2>J.R.R. Tolkien</h2>
+              <h1>{title}</h1>
+              <h2>{author}</h2>
             </BookTitle>
-            <BookDescrible>
-              Nec tempor nunc in egestas. Euismod nisi eleifend at et in
-              sagittis. Penatibus id vestibulum imperdiet a at imperdiet
-              lectu...
-            </BookDescrible>
+            <BookDescrible>{description}</BookDescrible>
           </CommentBook>
         </CommentCard>
       </ContainerCardVariant>

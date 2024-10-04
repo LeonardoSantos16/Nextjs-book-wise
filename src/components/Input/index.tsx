@@ -1,10 +1,10 @@
 import { MagnifyingGlass } from 'phosphor-react'
 import { ContainerInput, IconContainer, InputContent } from './styles'
 
-export function Input() {
+export function Input({ ...rest }) {
   return (
     <ContainerInput>
-      <InputContent placeholder="Placeholder" />
+      <InputContent {...rest} />
       <IconContainer>
         <MagnifyingGlass size={20} />
       </IconContainer>

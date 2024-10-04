@@ -6,7 +6,7 @@ interface propsPicture {
 export function PicutureUser({ width, height }: propsPicture) {
   return (
     <StylePicture
-      src="/images/books/Avatar.svg"
+      src="/images/Avatar.svg"
       alt="avatar"
       width={width}
       height={height}

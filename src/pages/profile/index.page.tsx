@@ -10,23 +10,76 @@ import {
   BooksListProfile,
 } from './styles'
 import { useSession } from 'next-auth/react'
+import { GetServerSideProps, GetStaticProps } from 'next'
+import { unstable_getServerSession } from 'next-auth'
+import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
+import { useEffect, useState } from 'react'
+import { api } from '@/lib/axios'
+import { useQuery } from '@tanstack/react-query'
+
+export interface dataProps {
+  pagesTotal: number
+  category: string | undefined
+  authorUnique: number
+  booksRead: number
+}
 export default function Profile() {
   const session = useSession()
-  console.log(session)
+  const userId = session.data?.user.id
+  const [data, setData] = useState({})
+  const search = ''
+  useEffect(() => {
+    const fetchBook = async () => {
+      const response = await api.get(`/book/profile`, {
+        params: { userId, search },
+      })
+      console.log(response.data)
+      return response.data
+    }
+    fetchBook()
+  }, [])
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const response = await api.get(`/profile`, {
+        params: { userId: session.data?.user.id },
+      })
+      console.log(response.data)
+      setData(response.data)
+      return response.data
+    }
+    fetchProfile()
+  }, [])
   return (
     <ContainerProfile>
       <PageTitle text="Perfil" icon={<User size={32} />} />
       <ProfileMain>
         <SearchBooks>
-          <Input />
+          <Input placeholder="Buscar livro avaliado" />
           <BooksListProfile>
             <CardProfile />
             <CardProfile />
             <CardProfile />
           </BooksListProfile>
         </SearchBooks>
-        <ProfileContent />
+        <ProfileContent session={session} data={data} />
       </ProfileMain>
     </ContainerProfile>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  res,
+  params,
+}) => {
+  const session = await unstable_getServerSession(
+    req,
+    res,
+    buildNextAuthOptions(req, res),
+  )
+  return {
+    props: {
+      session,
+    },
+  }
 }

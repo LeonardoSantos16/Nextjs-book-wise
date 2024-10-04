@@ -1,6 +1,6 @@
+import { Rating } from '../Rating'
 import {
   ContainerCard,
-  Rating,
   CommentCard,
   CommentBook,
   BookTitle,
@@ -26,7 +26,7 @@ export function CardProfile() {
               <h1>O Hobbit</h1>
               <h2>J.R.R. Tolkien</h2>
             </BookTitle>
-            <Rating>aaa</Rating>
+            <Rating size={16} stars={4} />
           </CommentBook>
         </CommentCard>
         <BookDescrible>

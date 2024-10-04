@@ -8,21 +8,21 @@ import {
   InfoAnalytics,
   IconStyled,
 } from './styles'
-import { useSession } from 'next-auth/react'
 import { BookOpen, Books, UserList, BookmarkSimple } from 'phosphor-react'
-
-export function ProfileContent() {
+import { dataProps } from '@/pages/profile/index.page'
+export function ProfileContent({ session, data }) {
   return (
     <ContainerProfile>
       <InfoUser>
         <ImageAvatar
-          src="/images/Avatar.svg"
-          alt="avatar"
+          src={session.data?.user.avatar_url}
+          alt={session.data?.user.name}
           width={72}
           height={72}
+          unoptimized
         />
         <TitleUser>
-          <h3>Cristofer Rosser</h3>
+          <h3>{session.data?.user.name}</h3>
           <span>membro desde 2019</span>
         </TitleUser>
       </InfoUser>
@@ -32,7 +32,7 @@ export function ProfileContent() {
             <BookOpen size={32} />
           </IconStyled>
           <InfoAnalytics>
-            <span>3853</span>
+            <span>{data.pagesTotal}</span>
             <h4>Páginas lidas</h4>
           </InfoAnalytics>
         </AnalyticsContainer>
@@ -41,7 +41,7 @@ export function ProfileContent() {
             <Books size={32} />
           </IconStyled>
           <InfoAnalytics>
-            <span>10</span>
+            <span>{data.booksRead}</span>
             <h4>Livros avaliados</h4>
           </InfoAnalytics>
         </AnalyticsContainer>
@@ -50,7 +50,7 @@ export function ProfileContent() {
             <UserList size={32} />
           </IconStyled>
           <InfoAnalytics>
-            <span>8</span>
+            <span>{data.authorUnique}</span>
             <h4>Autores lidos</h4>
           </InfoAnalytics>
         </AnalyticsContainer>
@@ -59,7 +59,7 @@ export function ProfileContent() {
             <BookmarkSimple size={32} />
           </IconStyled>
           <InfoAnalytics>
-            <span>Computação</span>
+            <span>{data.category}</span>
             <h4>Categoria mais lida</h4>
           </InfoAnalytics>
         </AnalyticsContainer>

@@ -9,7 +9,7 @@ export const ContainerModal = styled('div', {
   width: '66rem',
   padding: '6.4rem 3.4rem',
   background: '$gray800',
-  height: '102.4rem',
+  height: '100%',
   overflowY: 'auto',
   top: 0,
   right: '0',

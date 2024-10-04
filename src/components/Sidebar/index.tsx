@@ -10,9 +10,11 @@ import {
   UserContent,
 } from './styles'
 import { PicutureUser } from '@/components/PictureUser'
-
+import { useSession } from 'next-auth/react'
 export function Sidebar() {
-  const isLogged = false
+  const session = useSession()
+  const isAuthenticated = session.status === 'authenticated'
+
   return (
     <ContainerSidebar>
       <MenuHeader>
@@ -31,7 +33,7 @@ export function Sidebar() {
             <Binoculars size={18} />
             Explorar
           </SidebarItem>
-          {isLogged && (
+          {isAuthenticated && (
             <SidebarItem href="/profile">
               <User size={18} />
               Perfil
@@ -40,7 +42,7 @@ export function Sidebar() {
         </Menu>
       </MenuHeader>
       <FooterSidebar>
-        {isLogged ? (
+        {isAuthenticated ? (
           <UserContent>
             <PicutureUser width={32} height={32} />
             <h3>Leonardo</h3>
