@@ -27,7 +27,7 @@ export default function Profile() {
   const session = useSession()
   const userId = session.data?.user.id
   const [data, setData] = useState({})
-  const search = ''
+  const [search, setSearch] = useState('')
   useEffect(() => {
     const fetchBook = async () => {
       const response = await api.get(`/book/profile`, {
@@ -54,7 +54,11 @@ export default function Profile() {
       <PageTitle text="Perfil" icon={<User size={32} />} />
       <ProfileMain>
         <SearchBooks>
-          <Input placeholder="Buscar livro avaliado" />
+          <Input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Buscar livro avaliado"
+          />
           <BooksListProfile>
             <CardProfile />
             <CardProfile />

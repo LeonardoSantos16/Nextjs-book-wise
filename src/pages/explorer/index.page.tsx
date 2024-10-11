@@ -26,7 +26,7 @@ export default function Explorer() {
   const tags = ['Tudo', 'Tudo', 'ada', 'Tudaaao']
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [test, setTest] = useState<Book[]>([])
-  const search = ''
+  const [search, setSearch] = useState('')
   const tag = ''
   /*
   const fetchBook = async () => {
@@ -57,7 +57,11 @@ export default function Explorer() {
     <ContainerExplorer>
       <ExplorerHeader>
         <PageTitle icon={<Binoculars size={32} />} text="Explorar" />
-        <Input placeholder="digite author ou nome do filme" />
+        <Input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="digite author ou nome do filme"
+        />
       </ExplorerHeader>
       <SectionTags>
         {tags.map((tagValue, index) => (
