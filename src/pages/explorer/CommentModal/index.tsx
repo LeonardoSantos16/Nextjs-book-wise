@@ -22,6 +22,9 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
   const userAuthenticated = session.data?.user.id
   const [reviews, setReviews] = useState([])
   const [data, setData] = useState(null)
+  const [isCommentBoxVisible, setIsCommentBoxVisible] = useState(true)
+  const [newPost, setNewPost] = useState(false)
+  console.log(isCommentBoxVisible)
   useEffect(() => {
     const fetchRating = async () => {
       try {
@@ -49,7 +52,7 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
 
     fetchRating();
     fetchBook();
-  }, [bookId]); // Adiciona bookId como dependência
+  }, [bookId, newPost]); // Adiciona bookId como dependência
 
   function handleModalLogin(){
     setOpenModal(true)
@@ -69,7 +72,8 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
       <ContentComment>
         <TitleSection islink={userExists} textlink='avaliar' title="Avaliações" onClick={onLoginClick} />
         <SectionComment>
-          {!userExists && <CommentBox bookId={bookId}/>}
+          {!userExists && isCommentBoxVisible && <CommentBox newPost={setNewPost} setIsVisible={setIsCommentBoxVisible} bookId={bookId}/>}
+
           {reviews.map((review, index) => (
           <ReviewBook key={index} data={review}/>
         ))}

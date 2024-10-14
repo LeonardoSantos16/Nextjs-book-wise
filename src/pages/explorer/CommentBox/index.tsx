@@ -16,12 +16,14 @@ import { unstable_getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
-export function CommentBox({bookId}) {
+
+export function CommentBox({bookId, setIsVisible, newPost}) {
   const session = useSession()
   const user_id = session.data?.user.id
   const [description, setDescription] = useState('')
   const [rate, setRate] = useState(1)
   const buttonDisabled = description.length === 0 
+
   async function handlePostReview(){
     console.log('1')
     const response = await fetch('/api/book/review/postReview', {
@@ -31,9 +33,15 @@ export function CommentBox({bookId}) {
       },
       body: JSON.stringify({ bookId, rate, description, user_id }),
     });
-    console.log('2')
-
+    if (response.ok) { // Verifica se a resposta foi bem-sucedida
+      console.log('Avaliação postada com sucesso!');
+      setIsVisible(false); // Oculta o CommentBox
+      newPost(true)
+    } else {
+      console.error('Erro ao postar a avaliação:', response.statusText);
+    }
   }
+
   return (
     <ContainerComment>
       <ProfileComment>
@@ -54,7 +62,7 @@ export function CommentBox({bookId}) {
       />
       <ButtonArea>
         <ButtonConfirm>
-          <ButtonDelete>
+          <ButtonDelete onClick={() => setIsVisible(false)}>
             <X size={24} />
           </ButtonDelete>
         </ButtonConfirm>

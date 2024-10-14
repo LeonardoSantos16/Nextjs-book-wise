@@ -18,6 +18,5 @@ export default async function handler(
       created_at: 'desc',
     },
   })
-  const lastReviewUser = { ratingsUser }
   res.json({ ratingsUser })
 }
