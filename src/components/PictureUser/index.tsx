@@ -2,11 +2,12 @@ import { StylePicture } from './styles'
 interface propsPicture {
   width: number
   height: number
+  image: string
 }
-export function PicutureUser({ width, height }: propsPicture) {
+export function PicutureUser({ image, width, height }: propsPicture) {
   return (
     <StylePicture
-      src="/images/Avatar.svg"
+      src={image}
       alt="avatar"
       width={width}
       height={height}

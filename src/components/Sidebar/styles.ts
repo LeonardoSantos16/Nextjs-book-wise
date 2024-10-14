@@ -66,7 +66,7 @@ export const StyledLink = styled(Link, {
   },
 })
 
-export const FooterSidebar = styled('button', {
+export const FooterSidebar = styled(Link, {
   background: 'none',
   border: 'none',
   cursor: 'pointer',
@@ -74,7 +74,7 @@ export const FooterSidebar = styled('button', {
   gap: '1.2rem',
   textAlign: 'center',
   alignItems: 'center',
-
+  textDecoration: 'none',
   color: '$gray200',
   '& > h2': {
     fontWeight: '$bold',

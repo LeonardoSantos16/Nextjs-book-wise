@@ -13,6 +13,9 @@ import {
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
+import { GetServerSideProps } from 'next'
+import { unstable_getServerSession } from 'next-auth'
+import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
 
 interface Book {
   id: string
@@ -53,38 +56,14 @@ interface RatingBook {
 // O estado será um array de Rating
 export default function Home() {
   const session = useSession()
-  const bookId = '0440ad7d-230e-4573-b455-84ca38b5d339'
   const isAuthenticated = session.status === 'authenticated'
-  const userId = '4383f783-6ce1-4f92-b1dd-7a7a693c4aef'
+  const userSession = session.data?.user.id
   const [data, setData] = useState<Rating[]>([])
   const [bookPop, setBookPop] = useState<Book[]>([])
-  const [lastReview, setLastReview] = useState<RatingBook>({})
-  /*
-  useEffect(() => {
-    const fetchBook = async () => {
-      const response = await api.get(`/book`, {
-        params: {
-          bookId,
-        },
-      })
-      console.log(response.data)
-      return response.data
-    }
-    fetchBook()
-  }, [])
-  */
+  const [lastReview, setLastReview] = useState<RatingBook | null>(null)
 
-  useEffect(() => {
-    const fetchRating = async () => {
-      const response = await api.get(`/book/lastReview`, {
-        params: { userId: session.data?.user.id },
-      })
-      console.log(response.data.ratingsUser)
-      setLastReview(response.data.ratingsUser)
-      return response.data.ratingsUser
-    }
-    fetchRating()
-  }, [])
+
+ 
   useEffect(() => {
     const fetchBook = async () => {
       const response = await api.get(`/book/all`)
@@ -104,35 +83,49 @@ export default function Home() {
     }
     fetchPopular()
   }, [])
+  useEffect(() => {
+    const fetchRating = async () => {
+      const response = await api.get(`/book/lastReview`, {
+        params: { userId: userSession },
+      })
+      console.log(response.data.ratingsUser)
+      setLastReview(response.data.ratingsUser)
+      return response.data.ratingsUser
+    }
+    fetchRating()
+  }, [userSession])
+
+ 
+  // eslint-disable-next-line prettier/prettier
   return (
     <ContainerHome>
       <PageTitle icon={<ChartLineUp size={32} />} text="Inicio" />
       <ContentHome>
         <SectionHome>
-          {isAuthenticated && (
+          {isAuthenticated && lastReview && (
             <>
-              <TitleSection title="Sua última leitura" islink={true} />
+              <TitleSection title="Sua última leitura" textlink='ver mais' islink={true} />
               <CardBeginVisitor
-                title={lastReview.book.name}
-                author={lastReview.book.author}
-                description={lastReview.description}
-                imagebook={lastReview.book.cover_url}
-                star={lastReview.rate}
-                flag={true}
-              />
+                title={lastReview?.book.name}
+                author={lastReview?.book.author}
+                description={lastReview?.description}
+                imagebook={lastReview?.book.cover_url}
+                star={lastReview?.rate}
+                flag={true} username={''} avataruser={''} id={''}              />
             </>
           )}
-          <TitleSection title="Avaliações mais recentes" islink={false} />
+          <TitleSection title="Avaliações mais recentes" textlink='ver mais' islink={false} />
           <SectionContent>
-            {data.map((item, index) => (
+            {data?.map((item, index) => (
               <CardBeginVisitor
-                title={item.book.name}
-                star={item.rate}
-                author={item.book.author}
-                description={item.description}
-                username={item.user.name}
-                imagebook={item.book.cover_url}
-                avataruser={item.user.avatar_url}
+                id={item?.user_id}
+                title={item?.book.name}
+                star={item?.rate}
+                author={item?.book.author}
+                description={item?.description}
+                username={item?.user.name}
+                imagebook={item?.book.cover_url}
+                avataruser={item?.user.avatar_url}
                 key={index}
                 flag={false}
               />
@@ -140,14 +133,14 @@ export default function Home() {
           </SectionContent>
         </SectionHome>
         <SectionHome>
-          <TitleSection title="Livros populares" islink={true} />
+          <TitleSection title="Livros populares" islink={true} textlink='ver mais' />
           <SectionContent>
             {bookPop?.map((book, index) => (
               <CardPopularBooks
                 key={index}
-                name={book.name}
-                author={book.author}
-                coverurl={book.cover_url}
+                name={book?.name}
+                author={book?.author}
+                coverurl={book?.cover_url}
               />
             ))}
           </SectionContent>

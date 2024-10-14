@@ -23,6 +23,7 @@ export const SectionTags = styled('section', {
   display: 'flex',
   gap: '1.2rem',
   justifyContent: 'flex-start',
+  flexWrap: 'wrap',
 })
 
 export const SectionBooks = styled('section', {

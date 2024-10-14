@@ -85,13 +85,30 @@ export const InfoAnalytics = styled('div', {
     color: '$gray300',
   },
   '& > h4': {
+    display: 'flex',
+    gap: '1rem',
     color: '$gray200',
     fontSize: '$sm',
     fontWeight: '$regular',
     lineHeight: '$base',
   },
+ 
 })
 
 export const IconStyled = styled('div', {
   color: '$green100',
+})
+
+export const CategoryContent = styled('div', {
+  display: 'flex',
+  gap: '.3rem',
+
+  '& > h4': {
+    display: 'flex',
+    gap: '1rem',
+    color: '$gray200',
+    fontSize: '$sm',
+    fontWeight: '$regular',
+    lineHeight: '$base',
+  },
 })

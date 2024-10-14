@@ -1,9 +1,11 @@
 {
   "extends": [
     "@rocketseat/eslint-config/react",
+    "eslint:recommended", "plugin:prettier/recommended",
     "next/core-web-vitals"
   ],
   "rules": {
-    "camelcase": "off"
+    "camelcase": "off",
+    "prettier/prettier": "off"
   }
 }

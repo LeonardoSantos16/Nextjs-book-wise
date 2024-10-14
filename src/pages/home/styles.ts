@@ -13,6 +13,7 @@ export const ContainerHome = styled('div', {
 export const ContentHome = styled('div', {
   display: 'flex',
   gap: '6.4rem',
+  height: '85rem',
 })
 
 export const SectionHome = styled('section', {

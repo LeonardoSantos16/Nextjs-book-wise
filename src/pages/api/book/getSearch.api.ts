@@ -30,10 +30,25 @@ export default async function handler(
     })
   }
 
-  // Se não houver condições, busca todos os livros
   const books = await prisma.book.findMany({
-    where: whereConditions.AND.length ? whereConditions : undefined,
-  })
+    where: 
+      whereConditions.AND.length ? whereConditions : undefined,
+    include: {
+      categories: {
+        select: {
+          category: {
+            select: {
+              name: true, 
+            },
+          },
+        },
+      },
+    },
+  },
+)
+const uniqueCategories = [...new Set(books.flatMap(book => 
+  book.categories.map(item => item.category.name)
+))];
 
-  res.json({ books })
+  res.json({books, uniqueCategories})
 }

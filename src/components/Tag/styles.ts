@@ -17,9 +17,20 @@ export const ContainerTag = styled('button', {
     color: '$gray100',
     background: '$purple200',
   },
-  '&:active': {
+
+  '&:focus': {
     color: '$gray100',
     background: '$purple200',
     border: 'none',
   },
+
+  variants: {
+    isActive: {
+      true: {
+        color: '$gray100',
+        background: '$purple200',
+        border: 'none',
+      }
+    }
+  }
 })

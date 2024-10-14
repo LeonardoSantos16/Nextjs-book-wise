@@ -16,35 +16,54 @@ import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
 import { useQuery } from '@tanstack/react-query'
-
+import { useRouter } from 'next/router'
 export interface dataProps {
   pagesTotal: number
   category: string | undefined
   authorUnique: number
   booksRead: number
 }
+
+interface Usera {
+  id: string;
+  name: string;
+  avatar_url: string;
+  created_at: string; // ou Date se você preferir manipular como objeto Date
+}
+
+interface UserProfile {
+  user: Usera;
+  pagesTotal: number;
+  category: string;
+  authorUnique: number;
+  booksRead: number;
+}
+
 export default function Profile() {
+  const router = useRouter()
+  const { userId } = router.query
   const session = useSession()
-  const userId = session.data?.user.id
-  const [data, setData] = useState({})
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [userReviews, setUserReviews] = useState([])
   const [search, setSearch] = useState('')
   useEffect(() => {
     const fetchBook = async () => {
       const response = await api.get(`/book/profile`, {
         params: { userId, search },
       })
-      console.log(response.data)
+      console.log(response.data.books)
+      setUserReviews(response.data.books)
       return response.data
     }
     fetchBook()
-  }, [])
+  }, [search,userId])
   useEffect(() => {
     const fetchProfile = async () => {
       const response = await api.get(`/profile`, {
-        params: { userId: session.data?.user.id },
+        params: { userId },
       })
-      console.log(response.data)
-      setData(response.data)
+      console.log(response.data.user.avatar_url)
+      setUserProfile(response.data)
       return response.data
     }
     fetchProfile()
@@ -60,12 +79,14 @@ export default function Profile() {
             placeholder="Buscar livro avaliado"
           />
           <BooksListProfile>
-            <CardProfile />
-            <CardProfile />
-            <CardProfile />
+            {
+              userReviews.map((review, index) => (
+                <CardProfile key={index} data={review} />
+              ))
+            }            
           </BooksListProfile>
         </SearchBooks>
-        <ProfileContent session={session} data={data} />
+        <ProfileContent session={session} data={userProfile} />
       </ProfileMain>
     </ContainerProfile>
   )

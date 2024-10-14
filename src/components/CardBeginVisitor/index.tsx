@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Rating } from '../Rating'
 import {
   ContainerCard,
@@ -22,6 +23,7 @@ interface propsCard {
   username: string
   imagebook: string
   avataruser: string
+  id: string
 }
 export function CardBeginVisitor({
   flag,
@@ -32,13 +34,16 @@ export function CardBeginVisitor({
   username,
   imagebook,
   avataruser,
+  id,
 }: propsCard) {
   const imageUrl = imagebook.replace('public', '')
   function CardDefault() {
     return (
       <ContainerCard>
         <CardHeader>
-          <ImageAvatar src={avataruser} alt="avatar" width={40} height={40} />
+          <Link href={`/profile?userId=${id}`}>
+            <ImageAvatar src={avataruser} alt="avatar" width={40} height={40} />
+          </Link>
           <Profile>
             <h1>{username}</h1>
             <span>Hoje</span>
@@ -46,7 +51,7 @@ export function CardBeginVisitor({
           <Rating size={16} stars={star} />
         </CardHeader>
         <CommentCard>
-          <Image src={imageUrl} alt="capa do livro" width={108} height={152} />
+            <Image src={imageUrl} alt="capa do livro" width={108} height={152} />
           <CommentBook>
             <BookTitle>
               <h1>{title}</h1>

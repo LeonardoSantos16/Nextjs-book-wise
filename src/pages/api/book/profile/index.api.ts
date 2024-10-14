@@ -8,7 +8,11 @@ export default async function handler(
   const userId = req.query.userId || ''
   const search = req.query.search || ''
 
-  // Passo 1: Buscar ratings do usuário
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    }
+  })
   const userRatings = await prisma.rating.findMany({
     where: {
       user_id: userId,
@@ -32,9 +36,10 @@ export default async function handler(
           user_id: userId, // Incluir apenas os ratings do usuário
         },
       },
+      
     },
   })
 
   // Passo 4: Retornar os livros
-  res.json({ books })
+  res.json({ books, user })
 }

@@ -3,15 +3,16 @@ import { ContainerTitleSection, LinkSection } from './styles'
 interface propsTitleSection {
   title: string
   islink: boolean
+  textlink: string
 }
-export function TitleSection({ title, islink }: propsTitleSection) {
+export function TitleSection({ title, islink, textlink, ...rest }: propsTitleSection) {
   return (
-    <ContainerTitleSection>
+    <ContainerTitleSection >
       <h2>{title}</h2>
-      <LinkSection href="/">
+      <LinkSection href="" {...rest}>
         {islink && (
           <>
-            <h5>Ver todos</h5>
+            <h5>{textlink}</h5>
             <CaretRight size={24} />
           </>
         )}

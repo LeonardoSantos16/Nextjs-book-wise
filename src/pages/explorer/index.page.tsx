@@ -13,45 +13,60 @@ import { CommentModal } from './CommentModal'
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
 import { useQuery } from '@tanstack/react-query'
-
+import { ModalLogin } from '@/components/ModalLogin'
 interface Book {
   id: string
   name: string
   author: string
   summary: string
   cover_url: string
-  // outros campos, se houver
+}
+
+interface Category {
+  id: string
+  name: string
 }
 export default function Explorer() {
-  const tags = ['Tudo', 'Tudo', 'ada', 'Tudaaao']
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalLoginOpen, setIsModalLoginOpen] = useState(false)
   const [test, setTest] = useState<Book[]>([])
   const [search, setSearch] = useState('')
-  const tag = ''
-  /*
-  const fetchBook = async () => {
-    const response = await api.get(`/book/getSearch`, {
-      params: { search, tag },
-    })
-    console.log(response.data)
-    return response.data
-  }
-  fetchBook()
-*/
+  const [tags, setTags] = useState<Category[]>([])
+  const [selectedTag, setSelectedTag] = useState('')
+  const [detailsCard, setDetailsCard] = useState()
   const {
     data: books,
     isLoading,
     error,
-  } = useQuery(['books', search, tag], async () => {
+  } = useQuery(['books', search, selectedTag], async () => {
     const response = await api.get(`/book/getSearch`, {
-      params: { search, tag },
+      params: { search, tag: selectedTag },
     })
-    console.log(response.data.books)
+
+    
+
     setTest(response.data.books)
-    return response.data // Retorna os dados dos livros
+    setTags(response.data.uniqueCategories)
+    return response.data 
   })
-  const toggleModal = () => {
-    setIsModalOpen((prev) => !prev) // Alterna a visibilidade do modal
+ 
+  function handleCleanSearch(){
+    setTags([])
+    setSearch('')
+    setSelectedTag('')
+  }
+
+  function handleModalLogin() {
+    setIsModalLoginOpen(true);
+  }
+ 
+  async function handleModel (id){
+  //  const response = await api.get(`/book`, {
+   //   params: {bookId: id}
+   // })
+   // console.log(response.data.book)
+    setDetailsCard(id)
+    setIsModalOpen((prev) => !prev)
   }
   return (
     <ContainerExplorer>
@@ -60,25 +75,28 @@ export default function Explorer() {
         <Input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="digite author ou nome do filme"
+          placeholder="Digite author ou nome do filme"
         />
       </ExplorerHeader>
       <SectionTags>
-        {tags.map((tagValue, index) => (
-          <Tag key={index} value={tagValue} />
-        ))}
+        <Tag value='Tudo' onClick={handleCleanSearch} />
+      {tags.map((tag, index) => (
+        <Tag key={index} value={tag} onClick={() => setSelectedTag(tag)} />
+      ))}
       </SectionTags>
-      <SectionBooks onClick={toggleModal}>
+      <SectionBooks >
         {test?.map((book, index) => (
           <CardPopularBooks
             key={index}
             name={book.name}
             author={book.author}
             coverurl={book.cover_url}
+            onClick={() => handleModel(book.id)}
           />
         ))}
       </SectionBooks>
-      {isModalOpen && <CommentModal onClose={toggleModal} />}
+      {isModalOpen && <CommentModal bookId={detailsCard} onClose={handleModel}  onLoginClick={handleModalLogin} />}
+      {isModalLoginOpen && <ModalLogin />}
     </ContainerExplorer>
   )
 }

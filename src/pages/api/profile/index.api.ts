@@ -76,8 +76,14 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
             },
           })
         : null
-
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId
+      }
+    })
     const infoUser = {
+      user,
+
       pagesTotal,
       category: categoryUser?.name || null,
       authorUnique,

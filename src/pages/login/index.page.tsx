@@ -24,7 +24,7 @@ export default function Login() {
   }
   useEffect(() => {
     if (session.status === 'authenticated') {
-      router.push(`/home/${session.data?.user.id}`)
+      router.push(`/home/`)
     }
   }, [session.status])
 

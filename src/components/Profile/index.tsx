@@ -9,20 +9,19 @@ import {
   IconStyled,
 } from './styles'
 import { BookOpen, Books, UserList, BookmarkSimple } from 'phosphor-react'
-import { dataProps } from '@/pages/profile/index.page'
 export function ProfileContent({ session, data }) {
   return (
     <ContainerProfile>
       <InfoUser>
         <ImageAvatar
-          src={session.data?.user.avatar_url}
-          alt={session.data?.user.name}
+          src={data?.user.avatar_url}
+          alt={data?.user.name}
           width={72}
           height={72}
           unoptimized
         />
         <TitleUser>
-          <h3>{session.data?.user.name}</h3>
+          <h3>{data?.user.name}</h3>
           <span>membro desde 2019</span>
         </TitleUser>
       </InfoUser>
@@ -32,7 +31,7 @@ export function ProfileContent({ session, data }) {
             <BookOpen size={32} />
           </IconStyled>
           <InfoAnalytics>
-            <span>{data.pagesTotal}</span>
+            <span>{data?.pagesTotal}</span>
             <h4>Páginas lidas</h4>
           </InfoAnalytics>
         </AnalyticsContainer>
@@ -41,7 +40,7 @@ export function ProfileContent({ session, data }) {
             <Books size={32} />
           </IconStyled>
           <InfoAnalytics>
-            <span>{data.booksRead}</span>
+            <span>{data?.booksRead}</span>
             <h4>Livros avaliados</h4>
           </InfoAnalytics>
         </AnalyticsContainer>
@@ -50,7 +49,7 @@ export function ProfileContent({ session, data }) {
             <UserList size={32} />
           </IconStyled>
           <InfoAnalytics>
-            <span>{data.authorUnique}</span>
+            <span>{data?.authorUnique}</span>
             <h4>Autores lidos</h4>
           </InfoAnalytics>
         </AnalyticsContainer>
@@ -59,7 +58,7 @@ export function ProfileContent({ session, data }) {
             <BookmarkSimple size={32} />
           </IconStyled>
           <InfoAnalytics>
-            <span>{data.category}</span>
+            <span>{data?.category}</span>
             <h4>Categoria mais lida</h4>
           </InfoAnalytics>
         </AnalyticsContainer>

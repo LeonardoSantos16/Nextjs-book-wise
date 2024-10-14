@@ -10,11 +10,10 @@ import {
   UserContent,
 } from './styles'
 import { PicutureUser } from '@/components/PictureUser'
-import { useSession } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 export function Sidebar() {
   const session = useSession()
   const isAuthenticated = session.status === 'authenticated'
-
   return (
     <ContainerSidebar>
       <MenuHeader>
@@ -34,27 +33,29 @@ export function Sidebar() {
             Explorar
           </SidebarItem>
           {isAuthenticated && (
-            <SidebarItem href="/profile">
+            <SidebarItem href={`/profile?userId=${session.data?.user.id}`}>
               <User size={18} />
               Perfil
             </SidebarItem>
           )}
         </Menu>
       </MenuHeader>
-      <FooterSidebar>
+      
         {isAuthenticated ? (
-          <UserContent>
-            <PicutureUser width={32} height={32} />
-            <h3>Leonardo</h3>
-            <SignOut size={20} color="#F75A68" />
-          </UserContent>
+          <FooterSidebar onClick={() => signOut()} href="/">
+            <UserContent>
+              <PicutureUser image={session?.data.user.avatar_url} width={32} height={32} />
+              <h3>Leonardo</h3>
+              <SignOut size={20} color="#F75A68" />
+            </UserContent>
+          </FooterSidebar>
         ) : (
-          <>
+          <FooterSidebar href='/'>
             <h2>Fazer lgin</h2>
             <SignInIcon size={20} />
-          </>
+          </FooterSidebar>
+         
         )}
-      </FooterSidebar>
     </ContainerSidebar>
   )
 }
