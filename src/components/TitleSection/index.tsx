@@ -4,12 +4,13 @@ interface propsTitleSection {
   title: string
   islink: boolean
   textlink: string
+  link: string
 }
-export function TitleSection({ title, islink, textlink, ...rest }: propsTitleSection) {
+export function TitleSection({ title, islink, textlink, link, ...rest }: propsTitleSection) {
   return (
     <ContainerTitleSection >
       <h2>{title}</h2>
-      <LinkSection href="" {...rest}>
+      <LinkSection href={link}>
         {islink && (
           <>
             <h5>{textlink}</h5>

@@ -13,7 +13,6 @@ import {
   ContainerCardVariant,
 } from './styles'
 import Image from 'next/image'
-// TODO: fazer a lógica da estrela
 interface propsCard {
   flag: boolean
   title: string
@@ -74,7 +73,7 @@ export function CardBeginVisitor({
               <Profile>
                 <span>Hoje</span>
               </Profile>
-              <Rating size={16} stars={2} />
+              <Rating size={16} stars={star} />
             </InfoBook>
             <BookTitle>
               <h1>{title}</h1>

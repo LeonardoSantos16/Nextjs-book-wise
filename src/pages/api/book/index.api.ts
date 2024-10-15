@@ -1,8 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-// /api/book?bookId=48b86ac2-014e-401d-bcbb-331ce5f4a457
-// get do details de quando clicar em um card
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -18,7 +16,7 @@ export default async function handler(
         select: {
           category: {
             select: {
-              name: true, // Seleciona apenas o nome da categoria
+              name: true, 
             },
           },
         },

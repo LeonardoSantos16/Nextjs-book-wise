@@ -6,9 +6,7 @@ import {
   Profile,
   BookDescrible,
 } from './styles'
-// TODO: fazer a lógica da estrela
 export function ReviewBook( { data }) {
- // const imageUrl = data.cover_url.replace('public', '')
 
   return (
     <ContainerCard>

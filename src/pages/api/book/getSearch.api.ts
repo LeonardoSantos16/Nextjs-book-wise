@@ -5,8 +5,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const search = req.query.search || '' // Garantir que não seja undefined
-  const tag = req.query.tag || '' // Garantir que não seja undefined
+  const search = req.query.search || '' 
+  const tag = req.query.tag || '' 
 
   const whereConditions = {
     AND: [],

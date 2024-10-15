@@ -13,9 +13,6 @@ import {
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
-import { GetServerSideProps } from 'next'
-import { unstable_getServerSession } from 'next-auth'
-import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
 
 interface Book {
   id: string
@@ -23,7 +20,6 @@ interface Book {
   author: string
   summary: string
   cover_url: string
-  // outros campos, se houver
 }
 
 interface User {
@@ -53,7 +49,6 @@ interface RatingBook {
   user_id: string
 }
 
-// O estado será um array de Rating
 export default function Home() {
   const session = useSession()
   const isAuthenticated = session.status === 'authenticated'
@@ -67,7 +62,6 @@ export default function Home() {
   useEffect(() => {
     const fetchBook = async () => {
       const response = await api.get(`/book/all`)
-      console.log(response.data.rating)
       setData(response.data.rating)
 
       return response.data.rating
@@ -78,7 +72,6 @@ export default function Home() {
   useEffect(() => {
     const fetchPopular = async () => {
       const response = await api.get(`/book/bookPopular`)
-      console.log(response.data.booksPopular)
       setBookPop(response.data.booksPopular)
     }
     fetchPopular()
@@ -88,7 +81,6 @@ export default function Home() {
       const response = await api.get(`/book/lastReview`, {
         params: { userId: userSession },
       })
-      console.log(response.data.ratingsUser)
       setLastReview(response.data.ratingsUser)
       return response.data.ratingsUser
     }
@@ -96,7 +88,6 @@ export default function Home() {
   }, [userSession])
 
  
-  // eslint-disable-next-line prettier/prettier
   return (
     <ContainerHome>
       <PageTitle icon={<ChartLineUp size={32} />} text="Inicio" />
@@ -104,7 +95,7 @@ export default function Home() {
         <SectionHome>
           {isAuthenticated && lastReview && (
             <>
-              <TitleSection title="Sua última leitura" textlink='ver mais' islink={true} />
+              <TitleSection title="Sua última leitura" link='/explorer' textlink='Ver Todos' islink={true} />
               <CardBeginVisitor
                 title={lastReview?.book.name}
                 author={lastReview?.book.author}
@@ -114,7 +105,7 @@ export default function Home() {
                 flag={true} username={''} avataruser={''} id={''}              />
             </>
           )}
-          <TitleSection title="Avaliações mais recentes" textlink='ver mais' islink={false} />
+          <TitleSection title="Avaliações mais recentes" link='' textlink='' islink={false} />
           <SectionContent>
             {data?.map((item, index) => (
               <CardBeginVisitor
@@ -133,7 +124,7 @@ export default function Home() {
           </SectionContent>
         </SectionHome>
         <SectionHome>
-          <TitleSection title="Livros populares" islink={true} textlink='ver mais' />
+          <TitleSection title="Livros populares" link='/explorer' islink={true} textlink='Ver Todos' />
           <SectionContent>
             {bookPop?.map((book, index) => (
               <CardPopularBooks

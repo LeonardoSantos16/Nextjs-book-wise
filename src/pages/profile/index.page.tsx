@@ -28,7 +28,7 @@ interface Usera {
   id: string;
   name: string;
   avatar_url: string;
-  created_at: string; // ou Date se você preferir manipular como objeto Date
+  created_at: string; 
 }
 
 interface UserProfile {
@@ -51,7 +51,6 @@ export default function Profile() {
       const response = await api.get(`/book/profile`, {
         params: { userId, search },
       })
-      console.log(response.data.books)
       setUserReviews(response.data.books)
       return response.data
     }
@@ -62,7 +61,6 @@ export default function Profile() {
       const response = await api.get(`/profile`, {
         params: { userId },
       })
-      console.log(response.data.user.avatar_url)
       setUserProfile(response.data)
       return response.data
     }

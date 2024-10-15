@@ -19,10 +19,8 @@ export default async function handler(
     },
   })
 
-  // Passo 2: Obter IDs dos livros a partir dos ratings
   const bookIds = userRatings.map((rating) => rating.book_id)
 
-  // Passo 3: Buscar os livros usando os IDs e aplicando a busca
   const books = await prisma.book.findMany({
     where: {
       id: {
@@ -33,13 +31,12 @@ export default async function handler(
     include: {
       ratings: {
         where: {
-          user_id: userId, // Incluir apenas os ratings do usuário
+          user_id: userId, 
         },
       },
       
     },
   })
 
-  // Passo 4: Retornar os livros
   res.json({ books, user })
 }

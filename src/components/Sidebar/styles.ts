@@ -37,7 +37,6 @@ export const SidebarItem = styled(Link, {
   display: 'flex',
   gap: '1.2rem',
   alignItems: 'center',
-  // '& > p': {
   fontWeight: '$regular',
   fontSize: '$md',
   lineHeight: '$base',
@@ -46,12 +45,6 @@ export const SidebarItem = styled(Link, {
   '&:hover': {
     color: '$gray100',
   },
-  //  '&:active': {
-  //   width: '4px',
-  //   height: '24px',
-  //   borderRadius: '999px',
-  //  },
-  // },
 })
 
 export const SignInIcon = styled(SignIn, {

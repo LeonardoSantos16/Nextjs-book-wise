@@ -15,23 +15,19 @@ import { useSession } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
-import { ModalLogin } from '@/components/ModalLogin'
 export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
   const session = useSession()
   const userExists = session.status === 'unauthenticated'
-  const userAuthenticated = session.data?.user.id
   const [reviews, setReviews] = useState([])
   const [data, setData] = useState(null)
   const [isCommentBoxVisible, setIsCommentBoxVisible] = useState(true)
   const [newPost, setNewPost] = useState(false)
-  console.log(isCommentBoxVisible)
   useEffect(() => {
     const fetchRating = async () => {
       try {
         const response = await api.get(`/book/review`, {
           params: { bookId },
         });
-        console.log('rating', response.data.rating)
         setReviews(response.data.rating);
       } catch (error) {
         console.error("Erro ao buscar avaliações:", error);
@@ -43,7 +39,6 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
         const response = await api.get(`/book`, {
           params: { bookId },
         });
-        console.log(response.data)
         setData(response.data.book);
       } catch (error) {
         console.error("Erro ao buscar livro:", error);
@@ -52,11 +47,8 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
 
     fetchRating();
     fetchBook();
-  }, [bookId, newPost]); // Adiciona bookId como dependência
+  }, [bookId, newPost]);
 
-  function handleModalLogin(){
-    setOpenModal(true)
-  }
   return (
     <ContainerModal>
       <IconStyled onClick={onClose}>
@@ -70,7 +62,7 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
 
       }
       <ContentComment>
-        <TitleSection islink={userExists} textlink='avaliar' title="Avaliações" onClick={onLoginClick} />
+        <TitleSection islink={userExists && !isCommentBoxVisible} textlink='avaliar' link='' title="Avaliações" onClick={onLoginClick} />
         <SectionComment>
           {!userExists && isCommentBoxVisible && <CommentBox newPost={setNewPost} setIsVisible={setIsCommentBoxVisible} bookId={bookId}/>}
 

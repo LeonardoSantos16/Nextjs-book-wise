@@ -8,7 +8,6 @@ export const ContainerInput = styled('div', {
   width: '100%',
   height: '4.8rem',
   background: '$gray800',
-  // border: '1px solid #303F73',
   border: '1px solid $gray500',
   borderRadius: '4px',
 

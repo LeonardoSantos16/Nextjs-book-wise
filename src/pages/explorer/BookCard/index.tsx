@@ -14,8 +14,6 @@ import {
 import { BookmarkSimple, BookOpen } from 'phosphor-react'
 import { Rating } from '@/components/Rating'
 export function BookCard({ data }) {
-  // TODO: receber pelas props a width do card, height e width da imagem
-  console.log(data)
   const imageUrl = data.cover_url.replace('public', '')
   return (
     <ContainerBooks>

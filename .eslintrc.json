@@ -6,6 +6,6 @@
   ],
   "rules": {
     "camelcase": "off",
-    "prettier/prettier": "off"
+    "prettier/prettier": "on"
   }
 }

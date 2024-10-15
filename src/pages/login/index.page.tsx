@@ -15,7 +15,6 @@ import { unstable_getServerSession } from 'next-auth'
 export default function Login() {
   const session = useSession()
   const router = useRouter()
-  console.log(session.status)
   async function handleConnectGoogle() {
     await signIn('google')
   }

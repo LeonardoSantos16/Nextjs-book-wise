@@ -41,8 +41,8 @@ export const TextArea = styled('textarea', {
   background: '$gray800',
   borderRadius: '4px',
   resize: 'none',
-  border: '1px solid $gray500', // Adicionando uma borda para visibilidade
-  padding: '10px', // Adicionando padding
+  border: '1px solid $gray500', 
+  padding: '10px', 
   alignSelf: 'flex-end',
   '&::placeholder': {
     color: '$gray400',
@@ -56,9 +56,7 @@ export const ButtonArea = styled('div', {
   alignSelf: 'flex-end',
 })
 export const ButtonConfirm = styled('button', {
-  // display: 'flex',
-  // justifyContent: 'center',
-  // alignItems: 'center',
+
   width: '$.4rem',
   height: '$.4rem',
   padding: '.8rem',

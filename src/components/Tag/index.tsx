@@ -1,7 +1,7 @@
 import { ContainerTag } from './styles'
 import { useState } from 'react'
 interface TagProps {
-  value: string // Define a interface para as props
+  value: string 
 }
 
 export function Tag({ value, ...rest }: TagProps) {

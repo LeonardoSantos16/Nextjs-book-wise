@@ -60,11 +60,7 @@ export default function Explorer() {
     setIsModalLoginOpen(true);
   }
  
-  async function handleModel (id){
-  //  const response = await api.get(`/book`, {
-   //   params: {bookId: id}
-   // })
-   // console.log(response.data.book)
+  async function handleModel (id){ 
     setDetailsCard(id)
     setIsModalOpen((prev) => !prev)
   }

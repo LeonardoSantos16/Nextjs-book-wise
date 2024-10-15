@@ -9,7 +9,6 @@ export default async function handler(
     return get(req, res)
   }
 
-  // Se o método não for GET, retorne um erro 405 (Método não permitido)
   res.setHeader('Allow', ['GET'])
   return res.status(405).json({ message: 'Method not allowed' })
 }
@@ -64,7 +63,6 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
       },
     })
 
-    // Verifique se groupedCategories tem resultados antes de acessar o índice
     const categoryUser =
       groupedCategories.length > 0
         ? await prisma.category.findUnique({

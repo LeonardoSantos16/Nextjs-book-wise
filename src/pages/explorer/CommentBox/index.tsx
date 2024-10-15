@@ -15,27 +15,29 @@ import { GetServerSideProps } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 import { useSession } from 'next-auth/react'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
-export function CommentBox({bookId, setIsVisible, newPost}) {
+interface Comment {
+  bookId: string
+  setIsVisible: Dispatch<SetStateAction<boolean>>
+  newPost: Dispatch<SetStateAction<boolean>>
+}
+export function CommentBox({bookId, setIsVisible, newPost} : Comment) {
   const session = useSession()
   const user_id = session.data?.user.id
   const [description, setDescription] = useState('')
-  const [rate, setRate] = useState(1)
+  const [rating, setRating] = useState(0);
   const buttonDisabled = description.length === 0 
-
   async function handlePostReview(){
-    console.log('1')
     const response = await fetch('/api/book/review/postReview', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ bookId, rate, description, user_id }),
+      body: JSON.stringify({ bookId, rate: rating, description, user_id }),
     });
-    if (response.ok) { // Verifica se a resposta foi bem-sucedida
-      console.log('Avaliação postada com sucesso!');
-      setIsVisible(false); // Oculta o CommentBox
+    if (response.ok) { 
+      setIsVisible(false); 
       newPost(true)
     } else {
       console.error('Erro ao postar a avaliação:', response.statusText);
@@ -46,13 +48,14 @@ export function CommentBox({bookId, setIsVisible, newPost}) {
     <ContainerComment>
       <ProfileComment>
         <ImageAvatar
-          src={session.data?.user.image}
+          src={session.data?.user.avatar_url}
           alt={session.data?.user.name}
           width={40}
           height={40}
         />
         <Username>{session.data?.user.name}</Username>
-        <Rating stars={1} size={28} />
+          
+        <Rating stars={rating} size={28} onClick={setRating} />
       </ProfileComment>
       <TextArea
         name="comment"

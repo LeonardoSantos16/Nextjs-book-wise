@@ -8,7 +8,6 @@ import {
   MainCard,
 } from './styles'
 import Image from 'next/image'
-// TODO: fazer a lógica da estrela
 export function CardProfile({ data }) {
   const imageUrl = data.cover_url.replace('public', '')
 

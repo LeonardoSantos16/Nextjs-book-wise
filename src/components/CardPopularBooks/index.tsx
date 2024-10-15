@@ -1,7 +1,11 @@
 import { ContainerBooks, ImageBooks, BookDetails, TitleBook } from './styles'
 import { Rating } from '../Rating'
-export function CardPopularBooks({ author, name, coverurl, ...rest }) {
-  // TODO: receber pelas props a width do card, height e width da imagem
+interface cardPopular{
+  author: string
+  name: string
+  coverurl: string
+}
+export function CardPopularBooks({ author, name, coverurl, ...rest } : cardPopular) {
   const imageUrl = coverurl.replace('public', '')
   return (
     <ContainerBooks {...rest}>

@@ -1,6 +1,5 @@
 import { prisma } from '@/lib/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
-// get do home aba lateral
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -19,7 +18,6 @@ export default async function handler(
   const bookFilter = book
     .map((item) => item.book_id)
     .filter((aa, index) => {
-      console.log(index)
       if (index <= 3) {
         return aa
       }
