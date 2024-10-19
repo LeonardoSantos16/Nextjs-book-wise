@@ -2,7 +2,12 @@ import { X } from "phosphor-react"
 import { ButtonLogin } from "../ButtonLogin/Index"
 import { signIn } from "next-auth/react"
 import { Container, IconStyled, OptionsLogin, ContentModaL } from "./styles"
-export function ModalLogin(){
+import { Dispatch, SetStateAction } from "react"
+
+interface modalLogin {
+    onClose: Dispatch<SetStateAction<boolean>>
+}
+export function ModalLogin({ onClose } : modalLogin){
 
     async function handleConnectGoogle() {
         await signIn('google')
@@ -13,7 +18,7 @@ export function ModalLogin(){
     return(
         <Container>
             <ContentModaL>
-            <IconStyled>
+            <IconStyled onClick={onClose}>
                 <X size={24} />
             </IconStyled>
             <h2>Faça login para deixar sua avaliação</h2>

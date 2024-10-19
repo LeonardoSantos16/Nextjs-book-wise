@@ -19,7 +19,8 @@ export const ProfileComment = styled('div', {
 
 export const ImageAvatar = styled(Image, {
   borderRadius: '999px',
-  border: '1px solid $gradientVertical',
+  border: '2px solid',
+  background: '$gradientVertical',
 })
 
 export const Username = styled('div', {
@@ -70,16 +71,14 @@ export const ButtonConfirm = styled('button', {
   },
 })
 
-export const ButtonDelete = styled('button', {
+export const ButtonDelete = styled((ButtonConfirm), {
   color: '$purple100',
   border: 'none',
-  background: 'none',
   cursor: 'pointer',
 })
 
-export const ButtonAcept = styled('button', {
+export const ButtonAcept = styled((ButtonConfirm), {
   color: '$green100',
   border: 'none',
-  background: 'none',
   cursor: 'pointer',
 })

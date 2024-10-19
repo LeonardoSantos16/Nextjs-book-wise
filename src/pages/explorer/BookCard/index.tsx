@@ -14,6 +14,7 @@ import {
 import { BookmarkSimple, BookOpen } from 'phosphor-react'
 import { Rating } from '@/components/Rating'
 export function BookCard({ data }) {
+  console.log(data)
   const imageUrl = data.cover_url.replace('public', '')
   return (
     <ContainerBooks>
@@ -30,7 +31,7 @@ export function BookCard({ data }) {
             <span>{data.author}</span>
           </TitleBook>
           <Review>
-            <Rating stars={6} size={20} />
+            <Rating stars={data.averageRate} size={20} />
             <span>{data.countReview} avaliações</span>
           </Review>
         </BookDetails>

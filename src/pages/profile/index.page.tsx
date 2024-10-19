@@ -2,12 +2,13 @@ import { CardProfile } from '@/components/CardProfile'
 import { Input } from '@/components/Input'
 import { PageTitle } from '@/components/PageTitle'
 import { ProfileContent } from '@/components/Profile'
-import { User } from 'phosphor-react'
+import { ArrowArcLeft, CaretLeft, User } from 'phosphor-react'
 import {
   ContainerProfile,
   ProfileMain,
   SearchBooks,
   BooksListProfile,
+  ButtonBack,
 } from './styles'
 import { useSession } from 'next-auth/react'
 import { GetServerSideProps, GetStaticProps } from 'next'
@@ -46,11 +47,17 @@ export default function Profile() {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [userReviews, setUserReviews] = useState([])
   const [search, setSearch] = useState('')
+
+  function handleBack(){
+    router.back()
+  }
+  
   useEffect(() => {
     const fetchBook = async () => {
       const response = await api.get(`/book/profile`, {
         params: { userId, search },
       })
+      console.log(response.data)
       setUserReviews(response.data.books)
       return response.data
     }
@@ -65,10 +72,16 @@ export default function Profile() {
       return response.data
     }
     fetchProfile()
-  }, [])
+  }, [userId])
   return (
     <ContainerProfile>
+      {session.data?.user.id !== userId ?
+      <ButtonBack onClick={handleBack}>
+        <CaretLeft size={20} />
+        Voltar
+      </ButtonBack> :
       <PageTitle text="Perfil" icon={<User size={32} />} />
+      }
       <ProfileMain>
         <SearchBooks>
           <Input

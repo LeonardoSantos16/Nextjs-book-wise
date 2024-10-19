@@ -3,5 +3,6 @@ import Image from 'next/image'
 
 export const StylePicture = styled(Image, {
   borderRadius: '999px',
-  border: '1px solid $gradientVertical',
+  border: '2px solid',
+  background: '$gradientVertical'
 })

@@ -7,9 +7,23 @@ export const ContainerProfile = styled('div', {
   width: '100%',
   maxWidth: '100rem',
   margin: '0 auto',
-  paddingTop: '7.2rem',
 })
 
+export const ButtonBack = styled('button', {
+  display: 'flex',
+  gap: '1.2rem',
+  alignItems: 'center',
+  cursor: 'pointer',
+  background: 'none',
+  color: '$gray200',
+  width: '8rem',
+  border: 'none',
+  fontSize: '$md',
+  opacity: '100%',
+  fontFamily: 'Nunito Sans',
+  fontWeight: '$bold',
+  lineHeight: '$base',
+})
 export const ProfileMain = styled('div', {
   display: 'flex',
   gap: '6.4rem',

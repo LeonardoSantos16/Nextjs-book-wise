@@ -33,7 +33,7 @@ export const Menu = styled('div', {
   justifyContent: 'center',
 })
 
-export const SidebarItem = styled(Link, {
+export const ItemMenu = styled(Link, {
   display: 'flex',
   gap: '1.2rem',
   alignItems: 'center',
@@ -42,11 +42,25 @@ export const SidebarItem = styled(Link, {
   lineHeight: '$base',
   color: '$gray400',
   textDecoration: 'none',
+  justifyContent: 'center',
+  alignSelf: 'center',
+  position: 'absolute',
+  margin: '2rem',
   '&:hover': {
     color: '$gray100',
   },
+  '&:focus':{
+    color: '$gray100',
+  }
 })
 
+export const SidebarItem = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  border: 'none',
+  background: 'none',
+  height: '2.4rem',
+})
 export const SignInIcon = styled(SignIn, {
   color: '$green100',
 })

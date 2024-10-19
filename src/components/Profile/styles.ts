@@ -15,7 +15,8 @@ export const ContainerProfile = styled('div', {
 
 export const ImageAvatar = styled(Image, {
   borderRadius: '999px',
-  border: '1px solid $gradientVertical',
+  border: '2px solid',
+  background: '$gradientVertical'
 })
 
 export const InfoUser = styled('div', {

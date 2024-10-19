@@ -4,6 +4,7 @@ import {
   ContainerSidebar,
   MenuHeader,
   Menu,
+  ItemMenu,
   SidebarItem,
   FooterSidebar,
   SignInIcon,
@@ -11,9 +12,16 @@ import {
 } from './styles'
 import { PicutureUser } from '@/components/PictureUser'
 import { useSession, signOut } from 'next-auth/react'
+import { useState } from 'react'
+import menuItem from '../../../public/images/menuItem.svg'
 export function Sidebar() {
   const session = useSession()
   const isAuthenticated = session.status === 'authenticated'
+  const [activeItem, setActiveItem] = useState('home')
+
+  const handleItemClick = (item) => {
+    setActiveItem(item);
+  };
   return (
     <ContainerSidebar>
       <MenuHeader>
@@ -24,18 +32,27 @@ export function Sidebar() {
           height={32}
         />
         <Menu>
-          <SidebarItem href="/home">
-            <ChartLineUp size={18} />
-            Início
+          <SidebarItem onClick={() => handleItemClick('home')}>
+           {activeItem === 'home' && <Image src={menuItem} alt="item menu" />}
+            <ItemMenu href="/home">
+              <ChartLineUp size={18} />
+              Início
+            </ItemMenu>
           </SidebarItem>
-          <SidebarItem href="/explorer">
-            <Binoculars size={18} />
-            Explorar
+          <SidebarItem  onClick={() => handleItemClick('explorer')}>
+          {activeItem === 'explorer' && <Image src={menuItem} alt="item menu" />}
+            <ItemMenu href="/explorer" >
+              <Binoculars size={18} />
+              Explorar
+            </ItemMenu>      
           </SidebarItem>
           {isAuthenticated && (
-            <SidebarItem href={`/profile?userId=${session.data?.user.id}`}>
-              <User size={18} />
-              Perfil
+            <SidebarItem onClick={() => handleItemClick('profile')}>
+             {activeItem === 'profile' && <Image src={menuItem} alt="item menu" />}
+              <ItemMenu href={`/profile?userId=${session.data?.user.id}`}>
+                <User size={18} />
+                Perfil
+              </ItemMenu>
             </SidebarItem>
           )}
         </Menu>

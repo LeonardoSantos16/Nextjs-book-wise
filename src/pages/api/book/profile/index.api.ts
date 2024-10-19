@@ -34,7 +34,6 @@ export default async function handler(
           user_id: userId, 
         },
       },
-      
     },
   })
 

@@ -33,5 +33,16 @@ export default async function handler(
     },
   })
 
-  return res.json({ book: { ...book, categories, countReview } })
+  const bookReviews = await prisma.rating.findMany({
+    where: {
+      book_id: bookId,
+    },
+    select: {
+      rate: true
+    }
+  })
+  const rate = bookReviews.map((review) => review.rate)
+  const reducer = (accumulator, value) => accumulator + value
+  const averageRate = (rate.reduce(reducer)) / countReview
+  return res.json({ book: { ...book, categories, countReview, averageRate } })
 }

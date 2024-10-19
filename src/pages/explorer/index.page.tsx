@@ -57,7 +57,7 @@ export default function Explorer() {
   }
 
   function handleModalLogin() {
-    setIsModalLoginOpen(true);
+    setIsModalLoginOpen((prev) => !prev);
   }
  
   async function handleModel (id){ 
@@ -92,7 +92,7 @@ export default function Explorer() {
         ))}
       </SectionBooks>
       {isModalOpen && <CommentModal bookId={detailsCard} onClose={handleModel}  onLoginClick={handleModalLogin} />}
-      {isModalLoginOpen && <ModalLogin />}
+      {isModalLoginOpen && <ModalLogin onClose={handleModalLogin} />}
     </ContainerExplorer>
   )
 }

@@ -20,8 +20,9 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
   const userExists = session.status === 'unauthenticated'
   const [reviews, setReviews] = useState([])
   const [data, setData] = useState(null)
-  const [isCommentBoxVisible, setIsCommentBoxVisible] = useState(true)
+  const [isCommentBoxVisible, setIsCommentBoxVisible] = useState(!userExists)
   const [newPost, setNewPost] = useState(false)
+  
   useEffect(() => {
     const fetchRating = async () => {
       try {
@@ -49,6 +50,13 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
     fetchBook();
   }, [bookId, newPost]);
 
+  function handleClickReview (){
+    if(!userExists){
+      setIsCommentBoxVisible(true)
+    }else {
+      onLoginClick()
+    }
+  }
   return (
     <ContainerModal>
       <IconStyled onClick={onClose}>
@@ -62,12 +70,12 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
 
       }
       <ContentComment>
-        <TitleSection islink={userExists && !isCommentBoxVisible} textlink='avaliar' link='' title="Avaliações" onClick={onLoginClick} />
+        <TitleSection islink={!isCommentBoxVisible} textlink='avaliar' link='' title="Avaliações" onClick={handleClickReview} />
         <SectionComment>
           {!userExists && isCommentBoxVisible && <CommentBox newPost={setNewPost} setIsVisible={setIsCommentBoxVisible} bookId={bookId}/>}
 
           {reviews.map((review, index) => (
-          <ReviewBook key={index} data={review}/>
+            <ReviewBook key={index} data={review}/>
         ))}
     
         </SectionComment>

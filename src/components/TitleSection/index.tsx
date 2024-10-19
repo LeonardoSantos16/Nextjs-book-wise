@@ -10,7 +10,7 @@ export function TitleSection({ title, islink, textlink, link, ...rest }: propsTi
   return (
     <ContainerTitleSection >
       <h2>{title}</h2>
-      <LinkSection href={link}>
+      <LinkSection href={link} {...rest}>
         {islink && (
           <>
             <h5>{textlink}</h5>

@@ -37,8 +37,8 @@ export const CardHeader = styled('div', {
 
 export const ImageAvatar = styled(Image, {
   borderRadius: '999px',
-  border: '1px solid $gradientVertical',
-  alignSelf: 'center',
+  border: '2px solid transparent',
+  background: 'linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)'
 })
 
 export const Profile = styled('div', {

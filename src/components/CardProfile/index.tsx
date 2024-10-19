@@ -1,3 +1,4 @@
+import { differenceInDays, getDaysInMonth } from 'date-fns'
 import { Rating } from '../Rating'
 import {
   ContainerCard,
@@ -8,12 +9,15 @@ import {
   MainCard,
 } from './styles'
 import Image from 'next/image'
+import { useDate } from '@/hooks/useDate'
 export function CardProfile({ data }) {
   const imageUrl = data.cover_url.replace('public', '')
-
+  const dateObject = data.ratings.map((rating) => rating.created_at)
+  const date = useDate(dateObject)
+  
   return (
     <MainCard>
-      <h4>Há 2 dias</h4>
+      <h4>{date}</h4>
       <ContainerCard>
         <CommentCard>
           <Image

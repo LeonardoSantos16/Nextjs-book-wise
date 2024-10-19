@@ -22,6 +22,7 @@ export const ContentBooks = styled('div', {
 
 export const ImageBooks = styled(Image, {
   borderRadius: '1rem',
+
 })
 
 export const BookDetails = styled('div', {

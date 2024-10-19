@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Rating } from '../Rating'
+import { useDate } from '@/hooks/useDate'
 import {
   ContainerCard,
   CardHeader,
@@ -23,6 +24,7 @@ interface propsCard {
   imagebook: string
   avataruser: string
   id: string
+  date: string
 }
 export function CardBeginVisitor({
   flag,
@@ -34,18 +36,26 @@ export function CardBeginVisitor({
   imagebook,
   avataruser,
   id,
+  date
 }: propsCard) {
   const imageUrl = imagebook.replace('public', '')
+  const dateUserReview = useDate(date)
   function CardDefault() {
+    const imageStyle = {
+     borderRadius: '50%',
+    border: '2px solid transparent',
+    background: 'linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)'
+    }
     return (
       <ContainerCard>
         <CardHeader>
           <Link href={`/profile?userId=${id}`}>
-            <ImageAvatar src={avataruser} alt="avatar" width={40} height={40} />
+            <ImageAvatar
+               src={avataruser} alt="avatar" width={40} height={40} />
           </Link>
           <Profile>
             <h1>{username}</h1>
-            <span>Hoje</span>
+            <span>{dateUserReview}</span>
           </Profile>
           <Rating size={16} stars={star} />
         </CardHeader>
@@ -71,7 +81,7 @@ export function CardBeginVisitor({
           <CommentBook>
             <InfoBook>
               <Profile>
-                <span>Hoje</span>
+                <span>{dateUserReview}</span>
               </Profile>
               <Rating size={16} stars={star} />
             </InfoBook>

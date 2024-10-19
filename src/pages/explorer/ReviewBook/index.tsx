@@ -1,4 +1,5 @@
 import { Rating } from '@/components/Rating'
+import { useDate } from '@/hooks/useDate'
 import {
   ContainerCard,
   CardHeader,
@@ -7,7 +8,7 @@ import {
   BookDescrible,
 } from './styles'
 export function ReviewBook( { data }) {
-
+  const dateUserReview = useDate(data.created_at)
   return (
     <ContainerCard>
       <CardHeader>
@@ -19,7 +20,7 @@ export function ReviewBook( { data }) {
         />
         <Profile>
           <h1>{data.user.name}</h1>
-          <span>Hoje</span>
+          <span>{dateUserReview}</span>
         </Profile>
         <Rating size={16} stars={data.rate} />
       </CardHeader>

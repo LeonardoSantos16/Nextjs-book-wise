@@ -64,16 +64,12 @@ export function CommentBox({bookId, setIsVisible, newPost} : Comment) {
         onChange={(e) => setDescription(e.target.value)}
       />
       <ButtonArea>
-        <ButtonConfirm>
           <ButtonDelete onClick={() => setIsVisible(false)}>
             <X size={24} />
           </ButtonDelete>
-        </ButtonConfirm>
-        <ButtonConfirm>
           <ButtonAcept disabled={buttonDisabled} onClick={handlePostReview}>
             <Check size={24} />
           </ButtonAcept>
-        </ButtonConfirm>
       </ButtonArea>
     </ContainerComment>
   )

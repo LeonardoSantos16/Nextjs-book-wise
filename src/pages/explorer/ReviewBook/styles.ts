@@ -24,7 +24,8 @@ export const CardHeader = styled('div', {
 
 export const ImageAvatar = styled(Image, {
   borderRadius: '999px',
-  border: '1px solid $gradientVertical',
+  border: '2px solid',
+  background: '$gradientVertical',
   alignSelf: 'center',
 })
 

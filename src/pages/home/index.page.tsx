@@ -63,7 +63,7 @@ export default function Home() {
     const fetchBook = async () => {
       const response = await api.get(`/book/all`)
       setData(response.data.rating)
-
+      console.log(response.data)
       return response.data.rating
     }
     fetchBook()
@@ -72,6 +72,9 @@ export default function Home() {
   useEffect(() => {
     const fetchPopular = async () => {
       const response = await api.get(`/book/bookPopular`)
+      console.log(response.data.booksPopular)
+      console.log(response.data)
+      
       setBookPop(response.data.booksPopular)
     }
     fetchPopular()
@@ -102,7 +105,8 @@ export default function Home() {
                 description={lastReview?.description}
                 imagebook={lastReview?.book.cover_url}
                 star={lastReview?.rate}
-                flag={true} username={''} avataruser={''} id={''}              />
+                flag={true} username={''} avataruser={''} id={''}   
+                date={lastReview.created_at}           />
             </>
           )}
           <TitleSection title="Avaliações mais recentes" link='' textlink='' islink={false} />
@@ -117,6 +121,7 @@ export default function Home() {
                 username={item?.user.name}
                 imagebook={item?.book.cover_url}
                 avataruser={item?.user.avatar_url}
+                date={item?.created_at}
                 key={index}
                 flag={false}
               />
@@ -132,6 +137,7 @@ export default function Home() {
                 name={book?.name}
                 author={book?.author}
                 coverurl={book?.cover_url}
+
               />
             ))}
           </SectionContent>
