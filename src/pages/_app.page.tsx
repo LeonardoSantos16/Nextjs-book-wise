@@ -7,18 +7,6 @@ import {
   QueryClientProvider,
   QueryClientProviderProps,
 } from '@tanstack/react-query'
-/*
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppProps) {
-  return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
-  )
-}
-   */
 
 import { useRouter } from 'next/router'
 import { queryClient } from '@/lib/react-query'

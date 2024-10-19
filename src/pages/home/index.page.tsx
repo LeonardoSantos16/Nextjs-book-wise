@@ -20,6 +20,7 @@ interface Book {
   author: string
   summary: string
   cover_url: string
+  averageRate?: number
 }
 
 interface User {
@@ -137,7 +138,7 @@ export default function Home() {
                 name={book?.name}
                 author={book?.author}
                 coverurl={book?.cover_url}
-
+                stars={book?.averageRate}
               />
             ))}
           </SectionContent>

@@ -20,6 +20,7 @@ interface Book {
   author: string
   summary: string
   cover_url: string
+  averageRate: number
 }
 
 interface Category {
@@ -42,10 +43,8 @@ export default function Explorer() {
     const response = await api.get(`/book/getSearch`, {
       params: { search, tag: selectedTag },
     })
-
-    
-
-    setTest(response.data.books)
+    console.log(response.data.booksWithAverageRates)
+    setTest(response.data.booksWithAverageRates)
     setTags(response.data.uniqueCategories)
     return response.data 
   })
@@ -88,6 +87,7 @@ export default function Explorer() {
             author={book.author}
             coverurl={book.cover_url}
             onClick={() => handleModel(book.id)}
+            stars={book.averageRate}
           />
         ))}
       </SectionBooks>

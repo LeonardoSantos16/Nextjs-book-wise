@@ -17,7 +17,6 @@ export const ContainerSidebar = styled('div', {
   backgroundPosition: 'center',
   margin: '2rem 0 0 2rem',
 })
-/* Background */
 
 export const MenuHeader = styled('div', {
   display: 'flex',

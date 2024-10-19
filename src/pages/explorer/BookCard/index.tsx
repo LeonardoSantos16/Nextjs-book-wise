@@ -44,7 +44,7 @@ export function BookCard({ data }) {
           <InfoAnalytics>
             <span>Categoria</span>
             <CategoryContent>
-              {data.categories.map((item) => <h4>{item},</h4>)}
+              {data.categories.map((item) => <h4 key={item}>{item},</h4>)}
             </CategoryContent>
           </InfoAnalytics>
         </AnalyticsContainer>

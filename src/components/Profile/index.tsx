@@ -10,12 +10,14 @@ import {
 } from './styles'
 import { BookOpen, Books, UserList, BookmarkSimple } from 'phosphor-react'
 export function ProfileContent({ session, data }) {
+  const avatarUrl = data?.user.avatar_url;
+  const userName = data?.user.name || 'Usuário Desconhecido'; 
   return (
     <ContainerProfile>
       <InfoUser>
         <ImageAvatar
-          src={data?.user.avatar_url}
-          alt={data?.user.name}
+          src={avatarUrl}
+          alt={userName}
           width={72}
           height={72}
           unoptimized

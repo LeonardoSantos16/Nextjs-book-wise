@@ -5,7 +5,6 @@ import {
   Username,
   TextArea,
   ButtonArea,
-  ButtonConfirm,
   ButtonDelete,
   ButtonAcept,
 } from './styles'

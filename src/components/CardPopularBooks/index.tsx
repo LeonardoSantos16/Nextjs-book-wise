@@ -4,8 +4,9 @@ interface cardPopular{
   author: string
   name: string
   coverurl: string
+  stars?: number
 }
-export function CardPopularBooks({ author, name, coverurl, ...rest } : cardPopular) {
+export function CardPopularBooks({ author, name, coverurl, stars, ...rest } : cardPopular) {
   const imageUrl = coverurl.replace('public', '')
   return (
     <ContainerBooks {...rest}>
@@ -15,7 +16,7 @@ export function CardPopularBooks({ author, name, coverurl, ...rest } : cardPopul
           <h3>{name}</h3>
           <span>{author}</span>
         </TitleBook>
-        <Rating stars={3.5} size={16} />
+        <Rating stars={stars} size={16} />
       </BookDetails>
     </ContainerBooks>
   )
