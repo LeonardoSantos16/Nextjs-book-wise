@@ -1,7 +1,7 @@
 import { differenceInDays, getDaysInMonth } from "date-fns"
 import { useEffect, useState } from "react"
 
-export function useDate(dateRating){
+export function useDate(dateRating: number){
     const [date, setDate] = useState('')
     const dateReview = dateRating.toString().split("T")[0]
   useEffect(() => {
