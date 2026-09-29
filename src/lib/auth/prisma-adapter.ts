@@ -1,4 +1,4 @@
-import { Adapter, AdapterUser } from 'next-auth/adapters'
+import { Adapter, AdapterAccount, AdapterUser } from 'next-auth/adapters'
 import { User } from '@prisma/client'
 import { prisma } from '../prisma'
 import { NextApiRequest, NextApiResponse, NextPageContext } from 'next'
@@ -17,7 +17,7 @@ export function PrismaAdapter(
   res: NextApiResponse | NextPageContext['res'],
 ): Adapter {
   return {
-    async createUser(user) {
+    async createUser(user: Omit<AdapterUser, 'id'>) {
       const prismaUser = await prisma.user.create({
         data: {
           name: user.name,
@@ -81,7 +81,7 @@ export function PrismaAdapter(
         },
       })
     },
-    async linkAccount(account) {
+    async linkAccount(account: AdapterAccount) {
       await prisma.account.create({
         data: {
           user_id: account.userId,

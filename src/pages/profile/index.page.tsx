@@ -12,7 +12,7 @@ import {
 } from './styles'
 import { useSession } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
-import { unstable_getServerSession } from 'next-auth'
+import { getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
@@ -107,7 +107,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   params,
 }) => {
-  const session = await unstable_getServerSession(
+  const session = await getServerSession(
     req,
     res,
     buildNextAuthOptions(req, res),

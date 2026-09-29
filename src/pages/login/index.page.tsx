@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
-import { unstable_getServerSession } from 'next-auth'
+import { getServerSession } from 'next-auth'
 export default function Login() {
   const session = useSession()
   const router = useRouter()
@@ -73,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   params,
 }) => {
-  const session = await unstable_getServerSession(
+  const session = await getServerSession(
     req,
     res,
     buildNextAuthOptions(req, res),

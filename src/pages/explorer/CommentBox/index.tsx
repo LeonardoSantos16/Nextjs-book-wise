@@ -11,7 +11,7 @@ import {
 import { X, Check } from 'phosphor-react'
 import { Rating } from '@/components/Rating'
 import { GetServerSideProps } from 'next'
-import { unstable_getServerSession } from 'next-auth'
+import { getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 import { useSession } from 'next-auth/react'
 import { Dispatch, SetStateAction, useState } from 'react'
@@ -78,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   params,
 }) => {
-  const session = await unstable_getServerSession(
+  const session = await getServerSession(
     req,
     res,
     buildNextAuthOptions(req, res),
