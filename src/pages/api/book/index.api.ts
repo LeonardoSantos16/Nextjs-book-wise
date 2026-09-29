@@ -42,7 +42,7 @@ export default async function handler(
     }
   })
   const rate = bookReviews.map((review) => review.rate)
-  const reducer = (accumulator, value) => accumulator + value
-  const averageRate = (rate.reduce(reducer)) / countReview
+  const totalRates = rate.reduce((accumulator, value) => accumulator + value, 0)
+  const averageRate = countReview > 0 ? totalRates / countReview : 0
   return res.json({ book: { ...book, categories, countReview, averageRate } })
 }

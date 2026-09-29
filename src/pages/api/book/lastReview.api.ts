@@ -5,7 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const userId = req.query.userId
+  const userId = String(req.query.userId ?? '')
 
   const ratingsUser = await prisma.rating.findFirst({
     where: {

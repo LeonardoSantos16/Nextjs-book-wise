@@ -5,8 +5,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const userId = req.query.userId || ''
-  const search = req.query.search || ''
+  const userId = String(req.query.userId ?? '')
+  const search = String(req.query.search ?? '')
 
   const user = await prisma.user.findUnique({
     where: {
@@ -26,7 +26,7 @@ export default async function handler(
       id: {
         in: bookIds,
       },
-      OR: [{ name: { contains: search } }],
+      OR: [{ name: { contains: search, mode: 'insensitive' } }],
     },
     include: {
       ratings: {

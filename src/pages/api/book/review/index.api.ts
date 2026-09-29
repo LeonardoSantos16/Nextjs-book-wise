@@ -6,7 +6,7 @@ export default async function handler(
     res: NextApiResponse,
 
 ){
-    const bookId = req.query.bookId || ''
+    const bookId = String(req.query.bookId ?? '')
     const rating = await prisma.rating.findMany({
         where: {
             book_id: bookId

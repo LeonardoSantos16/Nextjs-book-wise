@@ -1,20 +1,24 @@
 import { prisma } from '@/lib/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { Prisma } from '@prisma/client'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const search = req.query.search || '' 
-  const tag = req.query.tag || '' 
+  const search = String(req.query.search ?? '')
+  const tag = String(req.query.tag ?? '')
 
-  const whereConditions = {
+  const whereConditions: { AND: Prisma.BookWhereInput[] } = {
     AND: [],
   }
 
   if (search) {
     whereConditions.AND.push({
-      OR: [{ author: { contains: search } }, { name: { contains: search } }],
+      OR: [
+        { author: { contains: search, mode: 'insensitive' } },
+        { name: { contains: search, mode: 'insensitive' } },
+      ],
     })
   }
 

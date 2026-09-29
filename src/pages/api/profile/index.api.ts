@@ -14,7 +14,7 @@ export default async function handler(
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const userId = req.query.userId
+  const userId = String(req.query.userId ?? '')
 
   if (!userId) {
     return res.status(400).json({ message: 'User ID is required' })
