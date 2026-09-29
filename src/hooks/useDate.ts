@@ -12,9 +12,9 @@ export function useDate(dateRating: string | Date){
     if (resultDays > 30) {
         const resultMonth = Math.floor(resultDays / 30);
         setDate(`Há ${resultMonth} meses`);
-      } else if (resultDays === 2) {
+      } else if (resultDays === 1) {
         setDate('Ontem');
-      } else if (resultDays <= 1) {
+      } else if (resultDays < 1) {
         setDate('Hoje');
       } else {
         setDate(`Há ${resultDays} dias`);
