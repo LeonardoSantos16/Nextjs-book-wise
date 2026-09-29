@@ -62,7 +62,7 @@ export function Sidebar() {
           <FooterSidebar onClick={() => signOut()} href="/">
             <UserContent>
               <PicutureUser image={session?.data.user.avatar_url} width={32} height={32} />
-              <h3>Leonardo</h3>
+              <h3>{session.data?.user.name}</h3>
               <SignOut size={20} color="#F75A68" />
             </UserContent>
           </FooterSidebar>
