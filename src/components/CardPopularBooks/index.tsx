@@ -1,12 +1,13 @@
 import { ContainerBooks, ImageBooks, BookDetails, TitleBook } from './styles'
 import { Rating } from '../Rating'
-interface cardPopular{
+import { ComponentProps } from 'react'
+interface cardPopular extends ComponentProps<typeof ContainerBooks> {
   author: string
   name: string
   coverurl: string
   stars?: number
 }
-export function CardPopularBooks({ author, name, coverurl, stars, ...rest } : cardPopular) {
+export function CardPopularBooks({ author, name, coverurl, stars = 0, ...rest } : cardPopular) {
   const imageUrl = coverurl.replace('public', '')
   return (
     <ContainerBooks {...rest}>

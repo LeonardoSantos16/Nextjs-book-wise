@@ -13,8 +13,18 @@ import {
 } from './styles'
 import { BookmarkSimple, BookOpen } from 'phosphor-react'
 import { Rating } from '@/components/Rating'
-export function BookCard({ data }) {
-  console.log(data)
+interface BookCardProps {
+  data: {
+    name: string
+    author: string
+    cover_url: string
+    total_pages: number
+    categories: string[]
+    countReview: number
+    averageRate: number
+  }
+}
+export function BookCard({ data }: BookCardProps) {
   const imageUrl = data.cover_url.replace('public', '')
   return (
     <ContainerBooks>

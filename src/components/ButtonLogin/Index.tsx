@@ -1,7 +1,8 @@
 import Image from 'next/image'
+import { ComponentProps } from 'react'
 import { ContainerButtonLogin } from './styles'
 
-interface propsLogin {
+interface propsLogin extends ComponentProps<typeof ContainerButtonLogin> {
   image: string
   alt: string
   text: string

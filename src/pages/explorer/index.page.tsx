@@ -10,7 +10,7 @@ import { Input } from '@/components/Input'
 import { Tag } from '@/components/Tag'
 import { CardPopularBooks } from '@/components/CardPopularBooks'
 import { CommentModal } from './CommentModal'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { api } from '@/lib/axios'
 import { useQuery } from '@tanstack/react-query'
 import { ModalLogin } from '@/components/ModalLogin'
@@ -23,23 +23,15 @@ interface Book {
   averageRate: number
 }
 
-interface Category {
-  id: string
-  name: string
-}
 export default function Explorer() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isModalLoginOpen, setIsModalLoginOpen] = useState(false)
   const [test, setTest] = useState<Book[]>([])
   const [search, setSearch] = useState('')
-  const [tags, setTags] = useState<Category[]>([])
+  const [tags, setTags] = useState<string[]>([])
   const [selectedTag, setSelectedTag] = useState('')
-  const [detailsCard, setDetailsCard] = useState()
-  const {
-    data: books,
-    isLoading,
-    error,
-  } = useQuery(['books', search, selectedTag], async () => {
+  const [detailsCard, setDetailsCard] = useState<string>()
+  useQuery(['books', search, selectedTag], async () => {
     const response = await api.get(`/book/getSearch`, {
       params: { search, tag: selectedTag },
     })
@@ -59,7 +51,7 @@ export default function Explorer() {
     setIsModalLoginOpen((prev) => !prev);
   }
  
-  async function handleModel (id){ 
+  async function handleModel (id?: string){ 
     setDetailsCard(id)
     setIsModalOpen((prev) => !prev)
   }

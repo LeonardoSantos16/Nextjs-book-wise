@@ -1,6 +1,6 @@
 import { ContainerTag } from './styles'
-import { useState } from 'react'
-interface TagProps {
+import { ComponentProps, useState } from 'react'
+interface TagProps extends ComponentProps<typeof ContainerTag> {
   value: string 
 }
 

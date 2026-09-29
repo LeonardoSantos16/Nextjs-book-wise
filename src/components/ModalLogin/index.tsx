@@ -2,10 +2,10 @@ import { X } from "phosphor-react"
 import { ButtonLogin } from "../ButtonLogin/Index"
 import { signIn } from "next-auth/react"
 import { Container, IconStyled, OptionsLogin, ContentModaL } from "./styles"
-import { Dispatch, SetStateAction } from "react"
+
 
 interface modalLogin {
-    onClose: Dispatch<SetStateAction<boolean>>
+    onClose: () => void
 }
 export function ModalLogin({ onClose } : modalLogin){
 

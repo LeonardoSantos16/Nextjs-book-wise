@@ -9,19 +9,33 @@ import {
   IconStyled,
 } from './styles'
 import { BookOpen, Books, UserList, BookmarkSimple } from 'phosphor-react'
-export function ProfileContent({ session, data }) {
+interface ProfileContentProps {
+  data: {
+    user: {
+      name: string
+      avatar_url: string
+    }
+    pagesTotal: number
+    category: string | null
+    authorUnique: number
+    booksRead: number
+  } | null
+}
+export function ProfileContent({ data }: ProfileContentProps) {
   const avatarUrl = data?.user.avatar_url;
   const userName = data?.user.name || 'Usuário Desconhecido'; 
   return (
     <ContainerProfile>
       <InfoUser>
-        <ImageAvatar
-          src={avatarUrl}
-          alt={userName}
-          width={72}
-          height={72}
-          unoptimized
-        />
+        {avatarUrl && (
+          <ImageAvatar
+            src={avatarUrl}
+            alt={userName}
+            width={72}
+            height={72}
+            unoptimized
+          />
+        )}
         <TitleUser>
           <h3>{data?.user.name}</h3>
           <span>membro desde 2019</span>

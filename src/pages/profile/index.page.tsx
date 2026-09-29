@@ -2,7 +2,7 @@ import { CardProfile } from '@/components/CardProfile'
 import { Input } from '@/components/Input'
 import { PageTitle } from '@/components/PageTitle'
 import { ProfileContent } from '@/components/Profile'
-import { ArrowArcLeft, CaretLeft, User } from 'phosphor-react'
+import { CaretLeft, User } from 'phosphor-react'
 import {
   ContainerProfile,
   ProfileMain,
@@ -11,12 +11,11 @@ import {
   ButtonBack,
 } from './styles'
 import { useSession } from 'next-auth/react'
-import { GetServerSideProps, GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
-import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 export interface dataProps {
   pagesTotal: number
@@ -35,7 +34,7 @@ interface Usera {
 interface UserProfile {
   user: Usera;
   pagesTotal: number;
-  category: string;
+  category: string | null;
   authorUnique: number;
   booksRead: number;
 }
@@ -97,7 +96,7 @@ export default function Profile() {
             }            
           </BooksListProfile>
         </SearchBooks>
-        <ProfileContent session={session} data={userProfile} />
+        <ProfileContent data={userProfile} />
       </ProfileMain>
     </ContainerProfile>
   )

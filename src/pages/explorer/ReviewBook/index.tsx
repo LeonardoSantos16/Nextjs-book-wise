@@ -7,7 +7,18 @@ import {
   Profile,
   BookDescrible,
 } from './styles'
-export function ReviewBook( { data }) {
+interface ReviewBookProps {
+  data: {
+    rate: number
+    description: string
+    created_at: string
+    user: {
+      name: string
+      avatar_url: string
+    }
+  }
+}
+export function ReviewBook({ data }: ReviewBookProps) {
   const dateUserReview = useDate(data.created_at)
   return (
     <ContainerCard>

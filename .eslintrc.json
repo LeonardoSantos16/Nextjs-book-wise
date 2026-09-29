@@ -6,6 +6,6 @@
   ],
   "rules": {
     "camelcase": "off",
-    "prettier/prettier": "on"
+    "prettier/prettier": ["warn", { "endOfLine": "auto" }]
   }
 }

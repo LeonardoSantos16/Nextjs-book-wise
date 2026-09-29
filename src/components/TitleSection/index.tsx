@@ -1,6 +1,8 @@
 import { CaretRight } from 'phosphor-react'
+import { ComponentProps } from 'react'
 import { ContainerTitleSection, LinkSection } from './styles'
-interface propsTitleSection {
+interface propsTitleSection
+  extends Omit<ComponentProps<typeof LinkSection>, 'href'> {
   title: string
   islink: boolean
   textlink: string

@@ -19,7 +19,7 @@ export function Sidebar() {
   const isAuthenticated = session.status === 'authenticated'
   const [activeItem, setActiveItem] = useState('home')
 
-  const handleItemClick = (item) => {
+  const handleItemClick = (item: string) => {
     setActiveItem(item);
   };
   return (

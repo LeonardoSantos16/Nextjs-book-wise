@@ -3,9 +3,7 @@ import type { AppProps } from 'next/app'
 import { MainLayout } from '@/layouts/MainLayout'
 import { SessionProvider } from 'next-auth/react'
 import {
-  QueryClient,
   QueryClientProvider,
-  QueryClientProviderProps,
 } from '@tanstack/react-query'
 
 import { useRouter } from 'next/router'

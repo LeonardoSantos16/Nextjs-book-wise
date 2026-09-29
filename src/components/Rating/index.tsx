@@ -1,10 +1,9 @@
 import { Star, StarHalf } from 'phosphor-react'
 import { ContainerStars } from './styles'
-import { Dispatch, SetStateAction } from 'react'
 interface Ratingprops {
   stars: number
   size: number
-  onClick: Dispatch<SetStateAction<number>>
+  onClick?: (value: number) => void
 }
 export function Rating({ stars, size, onClick }: Ratingprops) {
   const map1 = [1, 2, 3, 4, 5]

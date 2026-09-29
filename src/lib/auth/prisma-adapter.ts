@@ -1,7 +1,17 @@
-import { Adapter } from 'next-auth/adapters'
+import { Adapter, AdapterUser } from 'next-auth/adapters'
+import { User } from '@prisma/client'
 import { prisma } from '../prisma'
 import { NextApiRequest, NextApiResponse, NextPageContext } from 'next'
-import { parseCookies } from 'nookies'
+function toAdapterUser(user: User): AdapterUser {
+  return {
+    id: user.id,
+    name: user.name,
+    avatar_url: user.avatar_url!,
+    email: '',
+    emailVerified: null,
+  }
+}
+
 export function PrismaAdapter(
   req: NextApiRequest | NextPageContext['req'],
   res: NextApiResponse | NextPageContext['res'],
@@ -14,11 +24,7 @@ export function PrismaAdapter(
           avatar_url: user.avatar_url,
         },
       })
-      return {
-        id: prismaUser.id,
-        name: prismaUser.name,
-        avatar_url: prismaUser.avatar_url,
-      }
+      return toAdapterUser(prismaUser)
     },
     async getUser(id) {
       const user = await prisma.user.findUnique({
@@ -29,11 +35,11 @@ export function PrismaAdapter(
       if (!user) {
         return null
       }
-      return {
-        id: user.id,
-        name: user.name,
-        avatar_url: user.avatar_url!,
-      }
+      return toAdapterUser(user)
+    },
+    // O schema não armazena e-mail, então não há como buscar por ele
+    async getUserByEmail() {
+      return null
     },
 
     async getUserByAccount({ providerAccountId, provider }) {
@@ -53,13 +59,7 @@ export function PrismaAdapter(
         return null
       }
 
-      const { user } = account
-
-      return {
-        id: user.id,
-        name: user.name,
-        avatar_url: user.avatar_url!,
-      }
+      return toAdapterUser(account.user)
     },
 
     async updateUser(user) {
@@ -72,11 +72,7 @@ export function PrismaAdapter(
           avatar_url: user.avatar_url,
         },
       })
-      return {
-        id: prismaUser.id,
-        name: prismaUser.name,
-        avatar_url: prismaUser.avatar_url,
-      }
+      return toAdapterUser(prismaUser)
     },
     async deleteUser(userId) {
       await prisma.user.delete({
@@ -138,11 +134,7 @@ export function PrismaAdapter(
           expires: session.expires,
           sessionToken: session.session_token,
         },
-        user: {
-          id: user.id,
-          name: user.name,
-          avatar_url: user.avatar_url!,
-        },
+        user: toAdapterUser(user),
       }
     },
     async updateSession({ sessionToken, userId, expires }) {

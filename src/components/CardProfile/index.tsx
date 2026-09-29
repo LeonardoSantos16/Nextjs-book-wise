@@ -1,4 +1,3 @@
-import { differenceInDays, getDaysInMonth } from 'date-fns'
 import { Rating } from '../Rating'
 import {
   ContainerCard,
@@ -10,10 +9,21 @@ import {
 } from './styles'
 import Image from 'next/image'
 import { useDate } from '@/hooks/useDate'
-export function CardProfile({ data }) {
+interface CardProfileProps {
+  data: {
+    name: string
+    author: string
+    cover_url: string
+    ratings: {
+      rate: number
+      description: string
+      created_at: string
+    }[]
+  }
+}
+export function CardProfile({ data }: CardProfileProps) {
   const imageUrl = data.cover_url.replace('public', '')
-  const dateObject = data.ratings.map((rating) => rating.created_at)
-  const date = useDate(dateObject)
+  const date = useDate(data.ratings[0].created_at)
   
   return (
     <MainCard>

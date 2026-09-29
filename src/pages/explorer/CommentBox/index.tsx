@@ -47,8 +47,8 @@ export function CommentBox({bookId, setIsVisible, newPost} : Comment) {
     <ContainerComment>
       <ProfileComment>
         <ImageAvatar
-          src={session.data?.user.avatar_url}
-          alt={session.data?.user.name}
+          src={session.data?.user.avatar_url ?? ''}
+          alt={session.data?.user.name ?? ''}
           width={40}
           height={40}
         />

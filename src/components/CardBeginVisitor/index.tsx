@@ -41,11 +41,6 @@ export function CardBeginVisitor({
   const imageUrl = imagebook.replace('public', '')
   const dateUserReview = useDate(date)
   function CardDefault() {
-    const imageStyle = {
-     borderRadius: '50%',
-    border: '2px solid transparent',
-    background: 'linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)'
-    }
     return (
       <ContainerCard>
         <CardHeader>
