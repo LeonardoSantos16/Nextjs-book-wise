@@ -11,33 +11,73 @@ export const ContainerHome = styled('div', {
 })
 
 export const ContentHome = styled('div', {
-  display: 'flex',
-  gap: '6.4rem',
-  height: '85rem',
+  display: 'grid',
+  gridTemplateColumns: 'minmax(0, 1fr)',
+  gridTemplateAreas: '"last" "popular" "recent"',
+  width: '100%',
+
+  '@lg': {
+    gridTemplateColumns: 'minmax(0, 1fr) minmax(26rem, 32rem)',
+    gridTemplateRows: 'auto 1fr',
+    gridTemplateAreas: '"last popular" "recent popular"',
+    columnGap: '6.4rem',
+  },
 })
 
-export const SectionHome = styled('section', {
+const section = {
   display: 'flex',
   flexDirection: 'column',
   gap: '1.6rem',
+  minWidth: 0,
+} as const
 
-  '& > :nth-child(3)': {
-    marginTop: '3.4rem',
+export const LastReadingSection = styled('section', {
+  ...section,
+  gridArea: 'last',
+  marginBottom: '4rem',
+})
+
+export const PopularSection = styled('section', {
+  ...section,
+  gridArea: 'popular',
+  marginBottom: '4rem',
+
+  '@lg': {
+    position: 'sticky',
+    top: '2rem',
+    alignSelf: 'start',
+    marginBottom: 0,
   },
 })
 
-export const SectionContent = styled('section', {
+export const RecentSection = styled('section', {
+  ...section,
+  gridArea: 'recent',
+})
+
+export const SectionContent = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
-  overflow: 'auto',
-  height: '55rem',
+})
 
-  '&::-webkit-scrollbar': {
-    background: 'none',
-    borderRadius: '5px',
+export const PopularList = styled('div', {
+  display: 'flex',
+  gap: '1.2rem',
+  overflowX: 'auto',
+  scrollSnapType: 'x mandatory',
+  scrollbarWidth: 'none',
+  '&::-webkit-scrollbar': { display: 'none' },
+
+  '& > *': {
+    flex: '0 0 min(28rem, 85%)',
+    scrollSnapAlign: 'start',
   },
-  '&::-webkit-scrollbar-thumb:hover': {
-    background: '#555',
+
+  '@lg': {
+    flexDirection: 'column',
+    overflowX: 'visible',
+
+    '& > *': { flex: 'none' },
   },
 })

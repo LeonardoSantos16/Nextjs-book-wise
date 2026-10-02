@@ -7,7 +7,10 @@ import { ChartLineUp } from 'phosphor-react'
 import {
   ContainerHome,
   ContentHome,
-  SectionHome,
+  LastReadingSection,
+  PopularSection,
+  RecentSection,
+  PopularList,
   SectionContent,
 } from './styles'
 import { useSession } from 'next-auth/react'
@@ -96,20 +99,34 @@ export default function Home() {
     <ContainerHome>
       <PageTitle icon={<ChartLineUp size={32} />} text="Inicio" />
       <ContentHome>
-        <SectionHome>
-          {isAuthenticated && lastReview && (
-            <>
-              <TitleSection title="Sua última leitura" link='/explorer' textlink='Ver Todos' islink={true} />
-              <CardBeginVisitor
-                title={lastReview?.book.name}
-                author={lastReview?.book.author}
-                description={lastReview?.description}
-                imagebook={lastReview?.book.cover_url}
-                star={lastReview?.rate}
-                flag={true} username={''} avataruser={''} id={''}   
-                date={lastReview.created_at}           />
-            </>
-          )}
+        {isAuthenticated && lastReview && (
+          <LastReadingSection>
+            <TitleSection title="Sua última leitura" link='/explorer' textlink='Ver Todos' islink={true} />
+            <CardBeginVisitor
+              title={lastReview?.book.name}
+              author={lastReview?.book.author}
+              description={lastReview?.description}
+              imagebook={lastReview?.book.cover_url}
+              star={lastReview?.rate}
+              flag={true} username={''} avataruser={''} id={''}
+              date={lastReview.created_at}           />
+          </LastReadingSection>
+        )}
+        <PopularSection>
+          <TitleSection title="Livros populares" link='/explorer' islink={true} textlink='Ver Todos' />
+          <PopularList>
+            {bookPop?.map((book, index) => (
+              <CardPopularBooks
+                key={index}
+                name={book?.name}
+                author={book?.author}
+                coverurl={book?.cover_url}
+                stars={book?.averageRate}
+              />
+            ))}
+          </PopularList>
+        </PopularSection>
+        <RecentSection>
           <TitleSection title="Avaliações mais recentes" link='' textlink='' islink={false} />
           <SectionContent>
             {data?.map((item, index) => (
@@ -128,21 +145,7 @@ export default function Home() {
               />
             ))}
           </SectionContent>
-        </SectionHome>
-        <SectionHome>
-          <TitleSection title="Livros populares" link='/explorer' islink={true} textlink='Ver Todos' />
-          <SectionContent>
-            {bookPop?.map((book, index) => (
-              <CardPopularBooks
-                key={index}
-                name={book?.name}
-                author={book?.author}
-                coverurl={book?.cover_url}
-                stars={book?.averageRate}
-              />
-            ))}
-          </SectionContent>
-        </SectionHome>
+        </RecentSection>
       </ContentHome>
     </ContainerHome>
   )

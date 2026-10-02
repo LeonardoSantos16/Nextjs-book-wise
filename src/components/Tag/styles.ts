@@ -5,7 +5,13 @@ export const ContainerTag = styled('button', {
   alignItems: 'center',
   padding: '.4rem 1.6rem',
   borderRadius: '999px',
-  height: '34px',
+  minHeight: '4.4rem',
+  cursor: 'pointer',
+
+  '@md': {
+    minHeight: '3.4rem',
+  },
+
   lineHeight: '$base',
   fontSize: '$md',
   fontWeight: 'regular',

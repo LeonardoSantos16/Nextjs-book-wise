@@ -7,7 +7,7 @@ export const ContainerBooks = styled('div', {
   padding: '1.6rem 2rem',
   borderRadius: '.8rem',
   background: '$gray700',
-  width: '32rem',
+  width: '100%',
 
   '&:hover': {
     border: '2px solid $gray500',
@@ -15,6 +15,7 @@ export const ContainerBooks = styled('div', {
 })
 
 export const ImageBooks = styled(Image, {
+  flexShrink: 0,
   borderRadius: '.4rem',
 })
 
@@ -22,7 +23,9 @@ export const BookDetails = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  gap: '1.2rem',
   width: '100%',
+  minWidth: 0,
 })
 
 export const TitleBook = styled('div', {

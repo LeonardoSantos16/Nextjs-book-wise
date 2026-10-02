@@ -6,9 +6,10 @@ export const ContainerCard = styled('div', {
   flexDirection: 'column',
   alignItems: 'flex-start',
   padding: '2.4rem',
-  gap: '3.2rem',
-  width: '60rem',
-  height: '28rem',
+  gap: '2.4rem',
+  width: '100%',
+
+  '@md': { gap: '3.2rem' },
   background: '$gray700',
   borderRadius: '.8rem',
 
@@ -19,8 +20,7 @@ export const ContainerCard = styled('div', {
 
 export const ContainerCardVariant = styled('div', {
   padding: '2rem 2.4rem 2.6rem',
-  width: '60rem',
-  height: '19rem',
+  width: '100%',
   background: '$gray600',
   borderRadius: '.8rem',
 
@@ -31,7 +31,9 @@ export const ContainerCardVariant = styled('div', {
 
 export const CardHeader = styled('div', {
   display: 'flex',
-  gap: '1.6rem',
+  flexWrap: 'wrap',
+  alignItems: 'flex-start',
+  gap: '1.2rem 1.6rem',
   width: '100%',
 })
 
@@ -42,7 +44,8 @@ export const ImageAvatar = styled(Image, {
 })
 
 export const Profile = styled('div', {
-  flex: '1',
+  flex: '1 1 14rem',
+  minWidth: 0,
   display: 'flex',
   flexDirection: 'column',
 
@@ -67,16 +70,31 @@ export const Rating = styled('div', {
 
 export const CommentCard = styled('div', {
   display: 'flex',
-  gap: '2rem',
+  gap: '1.6rem',
   width: '100%',
-  height: '15rem',
+
+  '& > img': {
+    flexShrink: 0,
+    width: '7.2rem',
+    height: 'auto',
+    alignSelf: 'flex-start',
+    borderRadius: '.4rem',
+  },
+
+  '@md': {
+    gap: '2rem',
+    '& > img': { width: '10.8rem' },
+  },
 })
 
 export const CommentBook = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '2rem',
+  gap: '1.6rem',
   width: '100%',
+  minWidth: 0,
+
+  '@md': { gap: '2rem' },
 })
 
 export const BookTitle = styled('div', {
@@ -102,11 +120,15 @@ export const BookDescrible = styled('p', {
   fontWeight: '$regular',
   lineHeight: '$base',
   color: '$gray300',
-  textAlign: 'justify',
+  overflowWrap: 'anywhere',
+
+  '@md': { textAlign: 'justify' },
 })
 
 export const InfoBook = styled('div', {
   display: 'flex',
+  flexWrap: 'wrap',
+  gap: '.8rem',
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
