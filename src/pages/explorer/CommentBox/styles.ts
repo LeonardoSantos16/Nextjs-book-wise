@@ -6,14 +6,18 @@ export const ContainerComment = styled('div', {
   flexDirection: 'column',
   gap: '2.4rem',
   width: '100%',
-  padding: '2.4rem',
+  padding: '2rem',
   borderRadius: '.8rem',
+
+  '@md': { padding: '2.4rem' },
   background: '$gray700',
 })
 
 export const ProfileComment = styled('div', {
   display: 'flex',
-  gap: '1.6rem',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  gap: '1.2rem 1.6rem',
   width: '100%',
 })
 
@@ -24,7 +28,8 @@ export const ImageAvatar = styled(Image, {
 })
 
 export const Username = styled('div', {
-  flex: '1',
+  flex: '1 1 12rem',
+  minWidth: 0,
   alignSelf: 'center',
   fontWeight: '$bold',
   fontSize: '$md',
@@ -53,13 +58,14 @@ export const TextArea = styled('textarea', {
 export const ButtonArea = styled('div', {
   display: 'flex',
   gap: '.8rem',
-  width: '8.8rem',
   alignSelf: 'flex-end',
 })
 export const ButtonConfirm = styled('button', {
-
-  width: '$.4rem',
-  height: '$.4rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minWidth: '4.4rem',
+  minHeight: '4.4rem',
   padding: '.8rem',
   background: '$gray600',
   borderRadius: '.4rem',

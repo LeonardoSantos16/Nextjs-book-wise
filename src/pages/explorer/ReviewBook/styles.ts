@@ -5,8 +5,10 @@ export const ContainerCard = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  padding: '2.4rem',
+  padding: '2rem',
   gap: '2rem',
+
+  '@md': { padding: '2.4rem' },
   width: '100%',
   background: '$gray700',
   borderRadius: '.8rem',
@@ -18,7 +20,9 @@ export const ContainerCard = styled('div', {
 
 export const CardHeader = styled('div', {
   display: 'flex',
-  gap: '1.6rem',
+  flexWrap: 'wrap',
+  alignItems: 'flex-start',
+  gap: '1.2rem 1.6rem',
   width: '100%',
 })
 
@@ -30,7 +34,8 @@ export const ImageAvatar = styled(Image, {
 })
 
 export const Profile = styled('div', {
-  flex: '1',
+  flex: '1 1 14rem',
+  minWidth: 0,
   display: 'flex',
   flexDirection: 'column',
 
@@ -85,5 +90,7 @@ export const BookDescrible = styled('p', {
   fontWeight: '$regular',
   lineHeight: '$base',
   color: '$gray300',
-  textAlign: 'justify',
+  overflowWrap: 'anywhere',
+
+  '@md': { textAlign: 'justify' },
 })

@@ -22,6 +22,14 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
   const [data, setData] = useState(null)
   const [isCommentBoxVisible, setIsCommentBoxVisible] = useState(!userExists)
   const [newPost, setNewPost] = useState(false)
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [])
   
   useEffect(() => {
     const fetchRating = async () => {
@@ -59,7 +67,7 @@ export function CommentModal({ onClose, bookId, onLoginClick  }: any) {
   }
   return (
     <ContainerModal>
-      <IconStyled onClick={onClose}>
+      <IconStyled type="button" onClick={onClose} aria-label="Fechar">
         <X size={24} />
       </IconStyled>
       {data? (

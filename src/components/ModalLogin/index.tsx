@@ -18,7 +18,7 @@ export function ModalLogin({ onClose } : modalLogin){
     return(
         <Container>
             <ContentModaL>
-            <IconStyled onClick={onClose}>
+            <IconStyled type="button" onClick={onClose} aria-label="Fechar">
                 <X size={24} />
             </IconStyled>
             <h2>Faça login para deixar sua avaliação</h2>

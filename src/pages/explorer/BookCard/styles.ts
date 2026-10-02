@@ -4,16 +4,33 @@ import Image from 'next/image'
 export const ContainerBooks = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '4rem',
-  padding: '2.4rem 3.2rem 1.6rem',
+  gap: '2.4rem',
+  padding: '2.4rem 1.6rem 1.6rem',
+
+  '@md': {
+    gap: '4rem',
+    padding: '2.4rem 3.2rem 1.6rem',
+  },
   background: '$gray700',
   borderRadius: '1rem',
 })
 
 export const ContentBooks = styled('div', {
   display: 'flex',
-  gap: '3.2rem',
+  flexDirection: 'column',
+  gap: '2.4rem',
   width: '100%',
+
+  '& > img': {
+    width: '12rem',
+    height: 'auto',
+  },
+
+  '@md': {
+    flexDirection: 'row',
+    gap: '3.2rem',
+    '& > img': { width: '17.1rem' },
+  },
 
   '&:hover': {
     border: '2px solid $gray500',
@@ -29,7 +46,9 @@ export const BookDetails = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  gap: '1.6rem',
   width: '100%',
+  minWidth: 0,
 })
 
 export const TitleBook = styled('div', {
@@ -68,8 +87,16 @@ export const AnalyticsContainer = styled('div', {
 
 export const InfoBooks = styled('div', {
   display: 'flex',
-  gap: '5.6rem',
-  alignItems: 'center',
+  flexDirection: 'column',
+  gap: '2.4rem',
+  alignItems: 'flex-start',
+
+  '@md': {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: '5.6rem',
+  },
+
   width: '100%',
   padding: '2.4rem 0',
   borderTop: '1px solid $gray600',
@@ -78,7 +105,7 @@ export const InfoBooks = styled('div', {
 export const InfoAnalytics = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  height: '4.4rem',
+  minHeight: '4.4rem',
   '& > span': {
     fontWeight: '$bold',
     fontSize: '$xs',
@@ -102,6 +129,7 @@ export const IconStyled = styled('div', {
 
 export const CategoryContent = styled('div', {
   display: 'flex',
+  flexWrap: 'wrap',
   gap: '.3rem',
 
   '& > h4': {

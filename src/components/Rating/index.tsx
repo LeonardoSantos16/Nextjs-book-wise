@@ -9,7 +9,7 @@ export function Rating({ stars, size, onClick }: Ratingprops) {
   const map1 = [1, 2, 3, 4, 5]
   
   return (
-    <ContainerStars>
+    <ContainerStars interactive={!!onClick}>
       {map1.map((x) => {
         const handleClick = () => {
           if(onClick){
