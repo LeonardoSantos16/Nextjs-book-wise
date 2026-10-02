@@ -2,6 +2,10 @@
 import { createStitches } from '@stitches/react'
 
 export const { styled, getCssText, globalCss } = createStitches({
+  media: {
+    md: '(min-width: 768px)',
+    lg: '(min-width: 1024px)',
+  },
   theme: {
     fonts: {
       default: 'Nunito, sans-serif',

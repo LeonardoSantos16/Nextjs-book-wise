@@ -1,78 +1,53 @@
-import Image from 'next/image'
-import { ChartLineUp, Binoculars, User, SignOut } from 'phosphor-react'
+import { SignOut } from 'phosphor-react'
+import { signOut } from 'next-auth/react'
 import {
   ContainerSidebar,
   MenuHeader,
   Menu,
   ItemMenu,
-  SidebarItem,
+  ItemLabel,
   FooterSidebar,
   SignInIcon,
   UserContent,
+  UserName,
+  LogoFull,
+  LogoIcon,
 } from './styles'
 import { PicutureUser } from '@/components/PictureUser'
-import { useSession, signOut } from 'next-auth/react'
-import { useState } from 'react'
-import menuItem from '../../../public/images/menuItem.svg'
-export function Sidebar() {
-  const session = useSession()
-  const isAuthenticated = session.status === 'authenticated'
-  const [activeItem, setActiveItem] = useState('home')
+import { useNavigation } from '@/hooks/useNavigation'
 
-  const handleItemClick = (item: string) => {
-    setActiveItem(item);
-  };
+export function Sidebar() {
+  const { items, session, isAuthenticated } = useNavigation()
+
   return (
     <ContainerSidebar>
       <MenuHeader>
-        <Image
-          src="/images/books/Logo.svg"
-          alt="Logo"
-          width={128}
-          height={32}
-        />
+        <LogoFull src="/images/books/Logo.svg" alt="BookWise" width={128} height={32} />
+        <LogoIcon src="/images/books/LogoIcon.svg" alt="BookWise" width={28} height={32} />
         <Menu>
-          <SidebarItem onClick={() => handleItemClick('home')}>
-           {activeItem === 'home' && <Image src={menuItem} alt="item menu" />}
-            <ItemMenu href="/home">
-              <ChartLineUp size={18} />
-              Início
+          {items.map(({ label, href, icon: Icon, active }) => (
+            <ItemMenu key={label} href={href} active={active} aria-label={label}>
+              <Icon size={24} />
+              <ItemLabel>{label}</ItemLabel>
             </ItemMenu>
-          </SidebarItem>
-          <SidebarItem  onClick={() => handleItemClick('explorer')}>
-          {activeItem === 'explorer' && <Image src={menuItem} alt="item menu" />}
-            <ItemMenu href="/explorer" >
-              <Binoculars size={18} />
-              Explorar
-            </ItemMenu>      
-          </SidebarItem>
-          {isAuthenticated && (
-            <SidebarItem onClick={() => handleItemClick('profile')}>
-             {activeItem === 'profile' && <Image src={menuItem} alt="item menu" />}
-              <ItemMenu href={`/profile?userId=${session.data?.user.id}`}>
-                <User size={18} />
-                Perfil
-              </ItemMenu>
-            </SidebarItem>
-          )}
+          ))}
         </Menu>
       </MenuHeader>
-      
-        {isAuthenticated ? (
-          <FooterSidebar onClick={() => signOut()} href="/">
-            <UserContent>
-              <PicutureUser image={session?.data.user.avatar_url} width={32} height={32} />
-              <h3>{session.data?.user.name}</h3>
-              <SignOut size={20} color="#F75A68" />
-            </UserContent>
-          </FooterSidebar>
-        ) : (
-          <FooterSidebar href='/'>
-            <h2>Fazer lgin</h2>
-            <SignInIcon size={20} />
-          </FooterSidebar>
-         
-        )}
+
+      {isAuthenticated ? (
+        <FooterSidebar onClick={() => signOut()} href="/" aria-label="Sair">
+          <UserContent>
+            <PicutureUser image={session.data?.user.avatar_url ?? ''} width={32} height={32} />
+            <UserName>{session.data?.user.name}</UserName>
+            <SignOut size={20} color="#F75A68" />
+          </UserContent>
+        </FooterSidebar>
+      ) : (
+        <FooterSidebar href="/" aria-label="Fazer login">
+          <ItemLabel as="h2">Fazer login</ItemLabel>
+          <SignInIcon size={20} />
+        </FooterSidebar>
+      )}
     </ContainerSidebar>
   )
 }

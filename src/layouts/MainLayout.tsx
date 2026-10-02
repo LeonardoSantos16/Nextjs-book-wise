@@ -1,12 +1,16 @@
 import { Sidebar } from '@/components/Sidebar'
+import { MobileHeader } from '@/components/MobileHeader'
+import { BottomNav } from '@/components/BottomNav'
 import React from 'react'
+import { ContainerLayout, Main } from './styles'
+
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div style={{ display: 'flex', maxWidth: '144rem', margin: '0 auto' }}>
+    <ContainerLayout>
+      <MobileHeader />
       <Sidebar />
-      <main style={{ flex: 1, padding: '2rem', marginTop: '5.2rem' }}>
-        {children}
-      </main>
-    </div>
+      <Main>{children}</Main>
+      <BottomNav />
+    </ContainerLayout>
   )
 }

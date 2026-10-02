@@ -4,8 +4,8 @@ import {
   LoginContent,
   TitleLogin,
   OptionsLogin,
+  LoginImage,
 } from './styles'
-import Image from 'next/image'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -32,11 +32,12 @@ export default function Login() {
   }
   return (
     <ContainerLogin>
-      <Image
+      <LoginImage
         src="/images/books/Imagelogin.svg"
         alt="BookWise"
         width={598}
         height={912}
+        priority
       />
       <LoginContent>
         <TitleLogin>
