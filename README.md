@@ -7,26 +7,26 @@ Plataforma de avaliações de livros desenvolvida como desafio técnico da trilh
 * **Framework:** Next.js (Pages Router)
 * **Linguagem:** TypeScript
 * **ORM:** Prisma
-* **Banco de Dados:** SQLite (Dev)
-* **Autenticação:** NextAuth.js (Google Provider)
+* **Banco de Dados:** PostgreSQL
+* **Autenticação:** NextAuth.js (Google e GitHub)
 * **Estilização:** Stitches (CSS-in-JS)
 * **Estado e Fetching:** TanStack Query (React Query) e Axios
 * **Formulários:** React Hook Form + Zod
 * **Ícones:** Phosphor React
 
 ## Implementação Técnica
-* **Autenticação OAuth:** Integração com Google Login e github via NextAuth, persistindo sessões e contas diretamente no banco de dados.
+* **Autenticação OAuth:** Login com Google e GitHub via NextAuth, persistindo sessões e contas diretamente no banco de dados.
 * **Modelagem de Dados:** Estrutura relacional envolvendo Usuários, Livros, Categorias e Avaliações (Ratings).
 * **Lógica de Rating:** Implementação de cálculos de média de avaliações e validação de comentários por usuário.
 * **Consumo de API:** Arquitetura de API Routes do Next.js para processar requisições do lado do servidor.
-* **SEO e UX:** Uso de `next-seo` para gerenciamento de meta tags e esqueletos de carregamento para melhor experiência do usuário.
 
 ## Estrutura do Projeto
 
-* `prisma/`: Schemas, migrations e scripts de seed para popular o banco.
+* `prisma/`: Schema, migrations e scripts de seed para popular o banco.
+* `constants/`: Dados usados pelo seed (livros, categorias, usuários e avaliações).
 * `src/components/`: Componentes de interface (Sidebar, Star Rating, Cards).
 * `src/layouts/`: Wrappers de estrutura de página.
-* `src/lib/`: Configurações de clientes (Prisma, Axios, Google APIs).
+* `src/lib/`: Configurações de clientes (Prisma, Axios, React Query) e adapter do NextAuth.
 * `src/pages/api/`: Endpoints backend para processamento de dados.
 
 ## Figma
@@ -37,13 +37,21 @@ Plataforma de avaliações de livros desenvolvida como desafio técnico da trilh
 1. **Clone o repositório:**
    ```bash
    git clone https://github.com/LeonardoSantos16/Nextjs-book-wise
-2. **Intalar as dependências:**
+   ```
+2. **Instale as dependências:**
    ```bash
    npm install
-3. **Configure o Banco de Dados:**
+   ```
+3. **Configure as variáveis de ambiente:** copie o `.env.example` para `.env` e preencha `DATABASE_URL` (PostgreSQL), as credenciais OAuth do Google e do GitHub, `NEXTAUTH_SECRET` e `NEXTAUTH_URL`.
+   ```bash
+   cp .env.example .env
+   ```
+4. **Configure o banco de dados:**
    ```bash
    npx prisma migrate dev
    npx prisma db seed
-4. Inicie o servidor de desenvolvimento:
-      ```bash
+   ```
+5. **Inicie o servidor de desenvolvimento:**
+   ```bash
    npm run dev
+   ```
